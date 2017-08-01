@@ -2,8 +2,9 @@
   <div id="app">
     <mn-header></mn-header>
     <mn-menubar></mn-menubar>
-    <img src="./assets/logo.png">
+
     <router-view></router-view>
+    
     <mn-footer></mn-footer>
   </div>
 </template>

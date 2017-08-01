@@ -201,7 +201,7 @@
 import _ from 'lodash';
 
 export default {
-  data: function () {
+  data() {
     return {
       menu: this.initMenu(),
       menuResource: this.$resource(process.env.API_MENU),
@@ -209,13 +209,14 @@ export default {
       clientWidth: this.resolveClientWidth()
     }
   },
+
   methods: {
 
     search: _.debounce((event) => {
       console.log(event.target.value);
     }, 800),
 
-    initMenu: function () {
+    initMenu() {
       return {
         thaoDuoc: {
           nhapNgoai: [],
@@ -230,7 +231,7 @@ export default {
       }
     },
 
-    resolveMenu: function (rawMenu) {
+    resolveMenu(rawMenu) {
       let resolvedMenu = this.initMenu();
 
       if (!rawMenu || !rawMenu.length) return;
@@ -257,12 +258,12 @@ export default {
       return resolvedMenu;
     },
 
-    resolveClientWidth: function () {
-      console.log(document.documentElement.clientWidth)
+    resolveClientWidth() {
       return document.documentElement.clientWidth || 0;
     }
   },
-  created: function () {
+
+  created() {
     window.onresize = _.debounce((event) => {
       this.clientWidth = this.resolveClientWidth();
     }, 1000);
