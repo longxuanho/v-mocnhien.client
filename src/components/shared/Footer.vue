@@ -1,0 +1,135 @@
+<template>
+  <div>
+    <div class="uk-card uk-card-default">
+      <div class="uk-card-body">
+        <div class="uk-child-width-1-2@s uk-child-width-1-3@l  uk-margin" uk-grid>
+  
+          <div>
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-auto">
+                <i class="fa fa-truck fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="uk-width-expand">
+                <dl class="uk-description-list uk-text-middle">
+                  <dt>Giao hàng tận nơi</dt>
+                  <dd class="uk-text-meta uk-text-justify">Đối với các đơn hàng trong nội thành Tp. Hồ Chí Minh và các vùng lân cận.</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-auto">
+                <i class="fa fa-history fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="uk-width-expand">
+                <dl class="uk-description-list uk-text-middle">
+                  <dt>Hỗ trợ online 24/7</dt>
+                  <dd class="uk-text-meta uk-text-justify">Kết nối với chúng tôi mọi lúc qua điện thoại, Facebook hoặc hệ thống chat online.</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-auto">
+                <i class="fa fa-handshake-o fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="uk-width-expand">
+                <dl class="uk-description-list uk-text-middle">
+                  <dt>Đảm bảo chất lượng</dt>
+                  <dd class="uk-text-meta uk-text-justify">Các cây giống được cung cấp từ Mộc nhiên Farm có sức khỏe tốt, dễ sống và mức kháng bệnh cao!</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="uk-section uk-section-muted">
+      <div class="uk-container uk-container-expand">
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+          <div class="uk-text-top">
+            <h3>Giới thiệu</h3>
+            <p class="uk-text-justify">Khởi đầu từ một khu ban công của chung cư quận 2 Sài gòn vào 07/2015, Mộc Nhiên Farm được sinh ra với mong muốn đưa thiên nhiên trở lại với mọi người, cho những mảng xanh len lỏi đến từng ngóc ngách của cuộc sống và xoa dịu đi những ngột ngạt trong tâm hồn. Hãy lắng nghe những mầm xanh thỏ thẻ, cảm nhận sự dịu ngọt của hương hoa và hòa mình vào thiên nhiên với các sản phẩm từ nông trại của chúng tôi!</p>
+          </div>
+          <div class="uk-text-top">
+            <h3>Liên hệ</h3>
+            <ul class="uk-nav uk-navbar-dropdown-nav" style="margin-top: 20px;">
+              <!--<li><i class="fa fa-phone" aria-hidden="true"></i> (0933)-909.022 <span class="sk-vertical-separator">|</span> (08)-8235.654</li>-->
+              <li>
+                <i class="fa fa-phone" aria-hidden="true"></i> (0933)-909.022</li>
+              <li class="uk-nav-divider sk-horizontal-separator"></li>
+              <li class="uk-text-truncate">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 110 Đường 766, Thôn 4, Đức Hạnh, Đức Linh, Bình Thuận</li>
+              <li class="uk-nav-divider sk-horizontal-separator"></li>
+              <li>
+                <a href="https://www.facebook.com/mocnhienfarm" target="_blank" style="color: #666;">
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i> Kết nối tới chúng tôi</a>
+              </li>
+            </ul>
+          </div>
+          <div class="uk-text-top">
+            <h3>Hỗ trợ khách hàng</h3>
+            <ul class="uk-list uk-list-divider">
+              <li>
+                <a href="/ho-tro-khach-hang#huong-dan-mua-hang">
+                  <i class="fa fa-shopping-bag" aria-hidden="true"></i> Hướng dẫn mua hàng</a>
+              </li>
+              <li>
+                <a href="/ho-tro-khach-hang#huong-dan-thanh-toan">
+                  <i class="fa fa-credit-card" aria-hidden="true"></i> Hướng dẫn thanh toán</a>
+              </li>
+              <li>
+                <a href="/ho-tro-khach-hang#quy-dinh-giao-hang">
+                  <i class="fa fa-truck" aria-hidden="true"></i> Quy định giao hàng</a>
+              </li>
+              <li>
+                <a href="/ho-tro-khach-hang#cau-hoi-thuong-gap">
+                  <i class="fa fa-check-square-o" aria-hidden="true"></i> Câu hỏi thường gặp</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+h3 {
+  margin-bottom: 0;
+}
+
+.sk-vertical-separator {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.sk-horizontal-separator {
+  margin-top: .75rem;
+  margin-bottom: 1rem;
+}
+
+.fa {
+  color: #999;
+  margin-right: 0.75rem;
+}
+
+p,
+li {
+  font-size: .875rem;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+</style>

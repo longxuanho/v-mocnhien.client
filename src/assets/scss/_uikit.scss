@@ -1,0 +1,24 @@
+// 1. Your custom variables and variable overwrites.
+
+$global-link-color: #8DC15B;
+$global-link-hover-color: #80ba48;
+$global-primary-background: #8DC15B;
+
+
+// 2. Import default variables and available mixins.
+@import "../node_modules/uikit/src/scss/variables-theme.scss";
+@import '../node_modules/uikit/src/scss/mixins-theme';
+
+// 3. Your custom mixin overwrites.
+
+// 4. Import UIkit.
+@import '../node_modules/uikit/src/scss/uikit-theme';
+
+
+// .uk-navbar-container {
+//   -webkit-tap-highlight-color: transparent;
+// }
+
+.uk-offcanvas-bar {
+    background: rgba(0, 0, 0, .85);
+}
