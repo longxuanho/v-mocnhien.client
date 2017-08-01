@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <mn-header></mn-header>
+    <mn-menubar></mn-menubar>
     <img src="./assets/logo.png">
     <router-view></router-view>
     <mn-footer></mn-footer>
@@ -10,12 +11,14 @@
 <script>
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
+import Menubar from './components/shared/Menubar';
 
 export default {
   name: 'app',
   components: {
     mnHeader: Header,
-    mnFooter: Footer
+    mnFooter: Footer,
+    mnMenubar: Menubar
   }
 }
 </script>

@@ -132,4 +132,8 @@ a {
   text-decoration: none;
   color: #666;
 }
+
+.uk-card-default {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+}
 </style>
