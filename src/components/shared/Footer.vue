@@ -12,7 +12,7 @@
               <div class="uk-width-expand">
                 <dl class="uk-description-list uk-text-middle">
                   <dt>Giao hàng tận nơi</dt>
-                  <dd class="uk-text-meta uk-text-justify">Đối với các đơn hàng trong nội thành Tp. Hồ Chí Minh và các vùng lân cận.</dd>
+                  <dd class="uk-text-meta uk-text-justify">Đối với tất cả đơn hàng thuộc các khu vực tỉnh thành trên toàn quốc.</dd>
                 </dl>
               </div>
             </div>

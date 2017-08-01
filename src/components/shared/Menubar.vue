@@ -7,14 +7,14 @@
           <div class="uk-navbar-item">
             <div class="uk-search uk-search-navbar">
               <span uk-search-icon></span>
-              <input class="uk-search-input" type="search" placeholder="Tìm sản phẩm..." spellcheck=false>
+              <input class="uk-search-input" type="search" placeholder="Tìm sản phẩm..." spellcheck=false @input="search">
             </div>
           </div>
         </div>
   
         <div class="uk-navbar-right">
           <!--Hidden on small devices-->
-          <ul class="uk-navbar-nav">
+          <ul class="uk-navbar-nav" v-if="menu">
             <li>
               <a href="" class="sk-bold">Thảo dược</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
@@ -25,9 +25,9 @@
                         <a href="">Nhập ngoại</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <!-- <li *ngFor="let menuItem of menu.thaoDuoc.nhapNgoai">
-                          <a href="" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
-                        </li> -->
+                      <li v-for="menuItem in menu.thaoDuoc.nhapNgoai">
+                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                      </li>
                     </ul>
                   </div>
                   <div>
@@ -36,9 +36,9 @@
                         <a href="">Trong nước</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <!-- <li *ngFor="let menuItem of menu.thaoDuoc.trongNuoc">
-                          <a href="" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
-                        </li> -->
+                      <li v-for="menuItem in menu.thaoDuoc.trongNuoc">
+                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -48,9 +48,9 @@
               <a href="" class="sk-bold">Giống hoa</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
-                  <!-- <li *ngFor="let menuItem of menu.giongHoa">
-                      <a href="" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
-                    </li> -->
+                  <li v-for="menuItem in menu.giongHoa">
+                    <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -58,9 +58,9 @@
               <a href="" class="sk-bold">Cây cảnh</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
                 <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2">
-                  <!-- <li *ngFor="let menuItem of menu.cayCanh">
-                      <a href="" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
-                    </li> -->
+                  <li v-for="menuItem in menu.cayCanh">
+                    <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -74,9 +74,9 @@
                         <a href="">Nhiệt đới</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <!-- <li *ngFor="let menuItem of menu.cayAnTrai.nhietDoi">
-                          <a href="" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
-                        </li> -->
+                      <li v-for="menuItem in menu.cayAnTrai.nhietDoi">
+                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                      </li>
                     </ul>
                   </div>
                   <div>
@@ -85,9 +85,9 @@
                         <a href="">Ôn đới</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <!-- <li *ngFor="let menuItem of menu.cayAnTrai.onDoi">
-                          <a href="" >{{ menuItem.text }}</a>
-                        </li> -->
+                      <li v-for="menuItem in menu.cayAnTrai.onDoi">
+                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -102,8 +102,70 @@
 </template>
 
 <script>
-export default {
+import _ from 'lodash';
 
+export default {
+  data: function () {
+    return {
+      menu: this.initMenu(),
+      menuResource: this.$resource(process.env.API_MENU),
+      viCollator: new Intl.Collator('vi')
+    }
+  },
+  methods: {
+
+    search: _.debounce((event) => {
+      console.log(event.target.value);
+    }, 800),
+
+    initMenu: function () {
+      return {
+        thaoDuoc: {
+          nhapNgoai: [],
+          trongNuoc: []
+        },
+        giongHoa: [],
+        cayCanh: [],
+        cayAnTrai: {
+          nhietDoi: [],
+          onDoi: []
+        }
+      }
+    },
+
+    resolveMenu: function (rawMenu) {
+      let resolvedMenu = this.initMenu();
+
+      if (!rawMenu || !rawMenu.length) return;
+
+      // Sort data by Vietnamese
+      rawMenu = rawMenu.sort((a, b) => {
+        return this.viCollator.compare(a.text, b.text);
+      });
+
+      rawMenu.forEach(item => {
+        if (item.category === 'Thảo dược') {
+          if (item.group === 'Nhập ngoại') resolvedMenu.thaoDuoc.nhapNgoai.push(item);
+          if (item.group === 'Trong nước') resolvedMenu.thaoDuoc.trongNuoc.push(item);
+        }
+        if (item.category === 'Cây ăn trái') {
+          if (item.group === 'Nhiệt đới') resolvedMenu.cayAnTrai.nhietDoi.push(item);
+          if (item.group === 'Ôn đới') resolvedMenu.cayAnTrai.onDoi.push(item);
+        }
+
+        if (item.category === 'Giống hoa') resolvedMenu.giongHoa.push(item);
+        if (item.category === 'Cây cảnh') resolvedMenu.cayCanh.push(item);
+      });
+
+      return resolvedMenu;
+    }
+  },
+  created: function () {
+    this.menuResource.get()
+      .then(response => {
+        this.menu = this.resolveMenu(response.body.menu);
+      });
+  }
 }
 </script>
 
