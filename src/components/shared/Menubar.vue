@@ -13,8 +13,9 @@
         </div>
   
         <div class="uk-navbar-right">
+  
           <!--Hidden on small devices-->
-          <ul class="uk-navbar-nav" v-if="menu">
+          <ul class="uk-navbar-nav" v-if="menu && (clientWidth >= 960)">
             <li>
               <a href="" class="sk-bold">Thảo dược</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
@@ -94,6 +95,101 @@
               </div>
             </li>
           </ul>
+  
+          <!--Show on small devices-->
+          <div class="uk-offcanvas-content" v-if="menu && (clientWidth < 960)">
+  
+            <span uk-toggle="target: #product-menu-mobile" style="cursor: pointer; padding: 0 15px;" class="uk-navbar-toggle">
+              <span uk-navbar-toggle-icon></span>
+              <span class="uk-margin-small-left uk-text-uppercase uk-text-muted uk-text-middle" style="font-size: .875rem;" v-if="clientWidth > 545">Danh mục</span>
+            </span>
+  
+            <div id="product-menu-mobile" uk-offcanvas>
+              <div class="uk-offcanvas-bar">
+  
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+  
+                <h3>Mộc Nhiên Farm</h3>
+  
+                <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true" v-if="menu">
+                  <li class="uk-parent">
+                    <a>Thảo dược</a>
+                    <ul class="uk-nav-sub">
+                      <li>
+                        <a>Nhập ngoại</a>
+                        <ul>
+                          <li v-for="menuItem in menu.thaoDuoc.nhapNgoai">
+                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a>Trong nước</a>
+                        <ul>
+                          <li v-for="menuItem in menu.thaoDuoc.trongNuoc">
+                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="uk-parent">
+                    <a>Giống hoa</a>
+                    <ul class="uk-nav-sub">
+                      <li v-for="menuItem in menu.giongHoa">
+                        <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="uk-parent">
+                    <a>Cây cảnh</a>
+                    <ul class="uk-nav-sub">
+                      <li v-for="menuItem in menu.cayCanh">
+                        <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="uk-parent">
+                    <a>Cây ăn trái</a>
+                    <ul class="uk-nav-sub">
+                      <li>
+                        <a>Nhiệt đới</a>
+                        <ul>
+                          <li v-for="menuItem in menu.cayAnTrai.nhietDoi">
+                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a>Ôn đới</a>
+                        <ul>
+                          <li v-for="menuItem in menu.cayAnTrai.onDoi">
+                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+  
+                </ul>
+  
+                <hr/>
+                <blockquote>
+                  <p class="uk-text-muted uk-text-small uk-text-justify" style="margin-top: 2rem;">
+                    Khởi đầu từ một khu ban công của chung cư quận 2 Sài gòn vào 07/2015, Mộc Nhiên Farm được sinh ra với mong muốn đưa thiên nhiên trở lại với mọi người, cho những mảng xanh len lỏi đến từng ngóc ngách của cuộc sống và xoa dịu đi những ngột ngạt trong tâm hồn.
+                  </p>
+                  <p class="uk-text-muted uk-text-small uk-text-justify">Hãy lắng nghe những mầm xanh thỏ thẻ, cảm nhận sự dịu ngọt của hương hoa và hòa mình vào thiên nhiên với các sản phẩm từ nông trại của chúng tôi!
+                  </p>
+                  <footer class="uk-text-muted uk-text-right">from Mộc Nhiên with
+                    <span style="padding-left: .3rem;" uk-icon="icon: heart; ratio: 0.75"></span>
+                  </footer>
+                </blockquote>
+  
+              </div>
+            </div>
+  
+          </div>
+          
         </div>
   
       </nav>
@@ -109,7 +205,8 @@ export default {
     return {
       menu: this.initMenu(),
       menuResource: this.$resource(process.env.API_MENU),
-      viCollator: new Intl.Collator('vi')
+      viCollator: new Intl.Collator('vi'),
+      clientWidth: this.resolveClientWidth()
     }
   },
   methods: {
@@ -158,9 +255,18 @@ export default {
       });
 
       return resolvedMenu;
+    },
+
+    resolveClientWidth: function () {
+      console.log(document.documentElement.clientWidth)
+      return document.documentElement.clientWidth || 0;
     }
   },
   created: function () {
+    window.onresize = _.debounce((event) => {
+      this.clientWidth = this.resolveClientWidth();
+    }, 1000);
+
     this.menuResource.get()
       .then(response => {
         this.menu = this.resolveMenu(response.body.menu);
