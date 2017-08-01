@@ -4,7 +4,7 @@
     <mn-menubar></mn-menubar>
 
     <router-view></router-view>
-    
+
     <mn-footer></mn-footer>
   </div>
 </template>
@@ -28,5 +28,6 @@ export default {
 
 @import './assets/scss/uikit';
 @import './assets/scss/semantic-ui';
+@import './assets/scss/spinkit';
 
 </style>

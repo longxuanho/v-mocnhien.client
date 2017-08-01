@@ -1,29 +1,66 @@
 <template>
-  <div class="hello">
+  <div>
     <mn-hero></mn-hero>
-    <mn-secondary></mn-secondary>
+    <mn-secondary-hero></mn-secondary-hero>
+
+    <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" :sanPhams="bestSellers"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Sản phẩm mới'" :sanPhams="newReleases"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây lớn'" :sanPhams="cayLons"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Thảo dược'" :sanPhams="herbs"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Giống hoa'" :sanPhams="flowers"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây cảnh'" :sanPhams="ornamentalPlants"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây ăn trái'" :sanPhams="fruitTrees"></mn-san-pham-hightlight>
   </div>
 </template>
 
 <script>
 import Hero from './Hero';
-import Secondary from './Secondary';
+import SecondaryHero from './SecondaryHero';
+import SanPhamHightlight from './SanPhamHightlight';
 
 export default {
   name: 'home',
   data() {
     return {
-      msg: process.env.API_ENDPOINT
+      apiEndPoint: process.env.API_ENDPOINT + '/san_phams',
+      bestSellers: [],
+      newReleases: [],
+      herbs: [],
+      flowers: [],
+      ornamentalPlants: [],
+      fruitTrees: [],
+      cayLons: []
+    }
+  },
+  methods: {
+    resolveData() {
+      this.$http.get(this.apiEndPoint, { params: { nhom: '', status: '', tags: 'New Releases, Best Seller, Pinned', search: '', fields: 'nhom ten ma tags cover soLuong trichDan giaBan dvt dacTinh chieuCao', page: '1', limit: '50', sort: 'tenLatinized' } })
+        .then(response => {
+          let result = response.body;
+
+          this.bestSellers = result.filter(sanpham => sanpham.tags.includes('Best Seller'));
+          this.newReleases = result.filter(sanpham => sanpham.tags.includes('New Releases'));
+          this.herbs = result.filter(sanpham => sanpham.nhom === 'Thảo dược' && sanpham.tags.includes('Pinned'));
+          this.flowers = result.filter(sanpham => sanpham.nhom === 'Giống hoa' && sanpham.tags.includes('Pinned'));
+          this.ornamentalPlants = result.filter(sanpham => sanpham.nhom === 'Cây cảnh' && sanpham.tags.includes('Pinned'));
+          this.fruitTrees = result.filter(sanpham => sanpham.nhom === 'Cây ăn trái' && sanpham.tags.includes('Pinned'));
+          this.cayLons = result.filter(sanpham => sanpham.nhom === 'Cây lớn' && sanpham.tags.includes('Pinned'));
+        }, error => {
+          console.log(error);
+        });
     }
   },
   created() {
+    this.resolveData();
   },
   components: {
     mnHero: Hero,
-    mnSecondary: Secondary
+    mnSecondaryHero: SecondaryHero,
+    mnSanPhamHightlight: SanPhamHightlight
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 </style>

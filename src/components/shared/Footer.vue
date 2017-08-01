@@ -57,13 +57,13 @@
           <div class="uk-text-top">
             <h3>Liên hệ</h3>
             <ul class="uk-nav uk-navbar-dropdown-nav" style="margin-top: 20px;">
-              <!--<li><i class="fa fa-phone" aria-hidden="true"></i> (0933)-909.022 <span class="sk-vertical-separator">|</span> (08)-8235.654</li>-->
+              <!--<li><i class="fa fa-phone" aria-hidden="true"></i> (0933)-909.022 <span class="mn-vertical-separator">|</span> (08)-8235.654</li>-->
               <li>
                 <i class="fa fa-phone" aria-hidden="true"></i> (0933)-909.022</li>
-              <li class="uk-nav-divider sk-horizontal-separator"></li>
+              <li class="uk-nav-divider mn-horizontal-separator"></li>
               <li class="uk-text-truncate">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 110 Đường 766, Thôn 4, Đức Hạnh, Đức Linh, Bình Thuận</li>
-              <li class="uk-nav-divider sk-horizontal-separator"></li>
+              <li class="uk-nav-divider mn-horizontal-separator"></li>
               <li>
                 <a href="https://www.facebook.com/mocnhienfarm" target="_blank" style="color: #666;">
                   <i class="fa fa-facebook-square" aria-hidden="true"></i> Kết nối tới chúng tôi</a>
@@ -108,12 +108,12 @@ h3 {
   margin-bottom: 0;
 }
 
-.sk-vertical-separator {
+.mn-vertical-separator {
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
-.sk-horizontal-separator {
+.mn-horizontal-separator {
   margin-top: .75rem;
   margin-bottom: 1rem;
 }

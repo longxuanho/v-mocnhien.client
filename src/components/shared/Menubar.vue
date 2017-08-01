@@ -1,5 +1,5 @@
 <template>
-  <div class="sk-navbar-container" uk-sticky>
+  <div class="mn-navbar-container" uk-sticky>
     <div class="uk-container uk-container-expand">
       <nav class="uk-navbar-container uk-margin" uk-navbar>
   
@@ -17,11 +17,11 @@
           <!--Hidden on small devices-->
           <ul class="uk-navbar-nav" v-if="menu && (clientWidth >= 960)">
             <li>
-              <a href="" class="sk-bold">Thảo dược</a>
+              <a href="" class="mn-bold">Thảo dược</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
                   <div>
-                    <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
+                    <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
                         <a href="">Nhập ngoại</a>
                       </li>
@@ -32,7 +32,7 @@
                     </ul>
                   </div>
                   <div>
-                    <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
+                    <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
                         <a href="">Trong nước</a>
                       </li>
@@ -46,9 +46,9 @@
               </div>
             </li>
             <li>
-              <a href="" class="sk-bold">Giống hoa</a>
+              <a href="" class="mn-bold">Giống hoa</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
-                <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
+                <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
                   <li v-for="menuItem in menu.giongHoa">
                     <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                   </li>
@@ -56,9 +56,9 @@
               </div>
             </li>
             <li>
-              <a href="" class="sk-bold">Cây cảnh</a>
+              <a href="" class="mn-bold">Cây cảnh</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
-                <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2">
+                <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2">
                   <li v-for="menuItem in menu.cayCanh">
                     <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                   </li>
@@ -66,11 +66,11 @@
               </div>
             </li>
             <li>
-              <a href="" class="sk-bold">Cây ăn trái</a>
+              <a href="" class="mn-bold">Cây ăn trái</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
                   <div>
-                    <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
+                    <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
                         <a href="">Nhiệt đới</a>
                       </li>
@@ -81,7 +81,7 @@
                     </ul>
                   </div>
                   <div>
-                    <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
+                    <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
                         <a href="">Ôn đới</a>
                       </li>
@@ -281,7 +281,7 @@ export default {
   background-color: #fff;
 }
 
-.sk-navbar-container {
+.mn-navbar-container {
   nav {
     background-color: #fff;
   }
@@ -298,7 +298,7 @@ export default {
   }
 }
 
-.sk-bold {
+.mn-bold {
   font-weight: 500;
 }
 
@@ -309,7 +309,7 @@ export default {
   }
 }
 
-.sk-product-sub-categories {
+.mn-product-sub-categories {
   li a {
     text-transform: uppercase;
     font-size: 12px;
