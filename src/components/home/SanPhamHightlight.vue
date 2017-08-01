@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <div class="uk-container uk-container-expand" v-if="sanPhams.length > 0"> -->
-    <div class="uk-container uk-container-expand">
+    <div class="uk-container uk-container-expand" v-if="sanPhams.length > 0">
   
       <h4 class="uk-heading-line" v-if="(category === 'Sản phẩm bán chạy') || (category === 'Sản phẩm mới')">
         <span class="mn-ribbon">{{ category }}</span>
@@ -14,7 +13,7 @@
       <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-5@xl uk-grid-small uk-grid-match" uk-grid>
   
         <mn-san-pham-card v-for="sanPham in sanPhams" :sanPham="sanPham" :key="sanPham._id"></mn-san-pham-card>
-
+  
       </div>
   
       <div style="margin-top: 2rem; text-align: center;" v-if="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
@@ -22,7 +21,7 @@
       </div>
     </div>
   
-    <!-- <div class="mn-spinner mn-spinner-pulse" v-if="!sanPhams.length"></div> -->
+    <div class="mn-spinner mn-spinner-pulse" v-if="!sanPhams.length"></div>
   </div>
 </template>
 
