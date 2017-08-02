@@ -7,7 +7,7 @@
           <div class="uk-navbar-item">
             <div class="uk-search uk-search-navbar">
               <span uk-search-icon></span>
-              <input class="uk-search-input" type="search" placeholder="Tìm sản phẩm..." spellcheck=false @input="search">
+              <input class="uk-search-input" :value="searchText" type="search" placeholder="Tìm sản phẩm..." spellcheck=false @input="search">
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
                         <a href="">Nhập ngoại</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <li v-for="menuItem in menu.thaoDuoc.nhapNgoai">
+                      <li v-for="menuItem in menu.thaoDuoc.nhapNgoai" :key="menuItem.text">
                         <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -37,7 +37,7 @@
                         <a href="">Trong nước</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <li v-for="menuItem in menu.thaoDuoc.trongNuoc">
+                      <li v-for="menuItem in menu.thaoDuoc.trongNuoc" :key="menuItem.text">
                         <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -49,7 +49,7 @@
               <a href="" class="mn-bold">Giống hoa</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
-                  <li v-for="menuItem in menu.giongHoa">
+                  <li v-for="menuItem in menu.giongHoa" :key="menuItem.text">
                     <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                   </li>
                 </ul>
@@ -59,7 +59,7 @@
               <a href="" class="mn-bold">Cây cảnh</a>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
                 <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2">
-                  <li v-for="menuItem in menu.cayCanh">
+                  <li v-for="menuItem in menu.cayCanh" :key="menuItem.text">
                     <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                   </li>
                 </ul>
@@ -75,7 +75,7 @@
                         <a href="">Nhiệt đới</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <li v-for="menuItem in menu.cayAnTrai.nhietDoi">
+                      <li v-for="menuItem in menu.cayAnTrai.nhietDoi" :key="menuItem.text">
                         <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -86,7 +86,7 @@
                         <a href="">Ôn đới</a>
                       </li>
                       <li class="uk-nav-divider"></li>
-                      <li v-for="menuItem in menu.cayAnTrai.onDoi">
+                      <li v-for="menuItem in menu.cayAnTrai.onDoi" :key="menuItem.text">
                         <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -118,7 +118,7 @@
                       <li>
                         <a>Nhập ngoại</a>
                         <ul>
-                          <li v-for="menuItem in menu.thaoDuoc.nhapNgoai">
+                          <li v-for="menuItem in menu.thaoDuoc.nhapNgoai" :key="menuItem.text">
                             <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                           </li>
                         </ul>
@@ -126,7 +126,7 @@
                       <li>
                         <a>Trong nước</a>
                         <ul>
-                          <li v-for="menuItem in menu.thaoDuoc.trongNuoc">
+                          <li v-for="menuItem in menu.thaoDuoc.trongNuoc" :key="menuItem.text">
                             <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                           </li>
                         </ul>
@@ -136,7 +136,7 @@
                   <li class="uk-parent">
                     <a>Giống hoa</a>
                     <ul class="uk-nav-sub">
-                      <li v-for="menuItem in menu.giongHoa">
+                      <li v-for="menuItem in menu.giongHoa" :key="menuItem.text">
                         <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -144,7 +144,7 @@
                   <li class="uk-parent">
                     <a>Cây cảnh</a>
                     <ul class="uk-nav-sub">
-                      <li v-for="menuItem in menu.cayCanh">
+                      <li v-for="menuItem in menu.cayCanh" :key="menuItem.text">
                         <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                       </li>
                     </ul>
@@ -155,7 +155,7 @@
                       <li>
                         <a>Nhiệt đới</a>
                         <ul>
-                          <li v-for="menuItem in menu.cayAnTrai.nhietDoi">
+                          <li v-for="menuItem in menu.cayAnTrai.nhietDoi" :key="menuItem.text">
                             <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                           </li>
                         </ul>
@@ -163,7 +163,7 @@
                       <li>
                         <a>Ôn đới</a>
                         <ul>
-                          <li v-for="menuItem in menu.cayAnTrai.onDoi">
+                          <li v-for="menuItem in menu.cayAnTrai.onDoi" :key="menuItem.text">
                             <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                           </li>
                         </ul>
@@ -189,7 +189,7 @@
             </div>
   
           </div>
-          
+  
         </div>
   
       </nav>
@@ -203,17 +203,22 @@ import _ from 'lodash';
 export default {
   data() {
     return {
+      searchText: '',
       menu: this.initMenu(),
       menuResource: this.$resource(process.env.API_MENU),
       viCollator: new Intl.Collator('vi'),
       clientWidth: this.resolveClientWidth()
     }
   },
-
+  watch: {
+    '$route'(to, from) {
+      this.searchText = to.query['s'] || '';
+    }
+  },
   methods: {
 
-    search: _.debounce((event) => {
-      console.log(event.target.value);
+    search: _.debounce(function (event) {
+      this.$router.push({ name: 'SanPhams', query: { s: event.target.value } })
     }, 800),
 
     initMenu() {
@@ -264,6 +269,8 @@ export default {
   },
 
   created() {
+    this.searchText = this.$route.query['s'] || '';
+
     window.onresize = _.debounce((event) => {
       this.clientWidth = this.resolveClientWidth();
     }, 1000);

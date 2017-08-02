@@ -3,7 +3,7 @@
     <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-visible-toggle uk-inline" v-if="sanPham">
       <a class="uk-card-media-top uk-inline">
         <div class="ui label mn-counter uk-hidden-hover">
-          <i class="cubes icon"></i> {{ sanPham.soLuong }}
+          <i class="cubes icon"></i> {{ sanPham.soLuong | number }}
         </div>
         <img :src="sanPham.cover" alt="">
         <span class="ui right ribbon label uk-position-bottom" v-if="sanPham.dacTinh">
@@ -19,7 +19,7 @@
       <div class="uk-card-footer uk-position-bottom">
         <div class="subtitle uk-inline" style="width: 100%">
           <div class="mn-price uk-position-center-left">
-            {{ sanPham.giaBan }} ₫/{{ sanPham.dvt }} {{ sanPham.chieuCao }}
+            {{ sanPham.giaBan | number }} ₫/{{ sanPham.dvt }} {{ sanPham.chieuCao }}
           </div>
           <div class="uk-text-right">
             <div v-if="isItemInCart">
@@ -38,12 +38,17 @@
 </template>
 
 <script>
+import numberFilter from '../../services/numberFilter';
+
 export default {
   data() {
     return {
       isHetHang: false,
       isItemInCart: false
     }
+  },
+  filters: {
+    number: numberFilter
   },
   props: ['sanPham'],
 }
@@ -96,6 +101,7 @@ a {
 }
 
 .ribbon {
+  bottom: 0 !important;
   left: calc(100% + 0rem + 1.2em) !important;
   font-weight: 500 !important;
   line-height: 1.25 !important;

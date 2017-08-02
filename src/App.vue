@@ -29,5 +29,6 @@ export default {
 @import './assets/scss/uikit';
 @import './assets/scss/semantic-ui';
 @import './assets/scss/spinkit';
+@import './assets/scss/pagination';
 
 </style>

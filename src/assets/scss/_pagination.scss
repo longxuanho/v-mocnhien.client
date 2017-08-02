@@ -1,0 +1,24 @@
+ul.pagination {
+  padding: 0;
+  display: block;
+  list-style-type: none;
+  line-height: 1.5;
+  text-align: center;
+
+  .active {
+    border-bottom: medium solid #8DC15B;
+  }
+  li {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: .2rem !important;
+    :hover {
+      background: #e6e6e6;
+      cursor: pointer;
+    }
+  }
+  a {
+    padding: 0.1875rem 0.625rem;
+    text-decoration: none;
+  }
+}
