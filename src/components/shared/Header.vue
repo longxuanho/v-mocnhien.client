@@ -4,9 +4,9 @@
       <div class="uk-container uk-container-expand">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="boundary-align: true; align: center;">
           <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="">
+            <router-link class="uk-navbar-item uk-logo" :to="{ name: 'Home' }">
               <canvas width="190" height="50" uk-svg src="./static/images/logo.svg"></canvas>
-            </a>
+            </router-link>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">

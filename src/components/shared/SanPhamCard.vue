@@ -43,8 +43,14 @@ import numberFilter from '../../services/numberFilter';
 export default {
   data() {
     return {
-      isHetHang: false,
-      isItemInCart: false
+    }
+  },
+  computed: {
+    isItemInCart() {
+      return false;
+    },
+    isHetHang() {
+      return this.sanPham && this.sanPham.soLuong <= 0;
     }
   },
   filters: {

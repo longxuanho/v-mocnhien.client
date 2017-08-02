@@ -17,28 +17,28 @@
           <!--Hidden on small devices-->
           <ul class="uk-navbar-nav" v-if="menu && (clientWidth >= 960)">
             <li>
-              <a href="" class="mn-bold">Thảo dược</a>
+              <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược' } }">Thảo dược</router-link>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
                   <div>
                     <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
-                        <a href="">Nhập ngoại</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược nhập ngoại' } }">Nhập ngoại</router-link>
                       </li>
                       <li class="uk-nav-divider"></li>
                       <li v-for="menuItem in menu.thaoDuoc.nhapNgoai" :key="menuItem.text">
-                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </div>
                   <div>
                     <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
-                        <a href="">Trong nước</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược trong nước' } }">Trong nước</router-link>
                       </li>
                       <li class="uk-nav-divider"></li>
                       <li v-for="menuItem in menu.thaoDuoc.trongNuoc" :key="menuItem.text">
-                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -46,48 +46,48 @@
               </div>
             </li>
             <li>
-              <a href="" class="mn-bold">Giống hoa</a>
+              <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Giống hoa' } }">Giống hoa</router-link>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
                   <li v-for="menuItem in menu.giongHoa" :key="menuItem.text">
-                    <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                    <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                   </li>
                 </ul>
               </div>
             </li>
             <li>
-              <a href="" class="mn-bold">Cây cảnh</a>
+              <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây cảnh' } }">Cây cảnh</router-link>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
                 <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories uk-column-1-2">
                   <li v-for="menuItem in menu.cayCanh" :key="menuItem.text">
-                    <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                    <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                   </li>
                 </ul>
               </div>
             </li>
             <li>
-              <a href="" class="mn-bold">Cây ăn trái</a>
+              <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái' } }">Cây ăn trái</router-link>
               <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
                 <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
                   <div>
                     <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
-                        <a href="">Nhiệt đới</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái nhiệt đới' } }">Nhiệt đới</router-link>
                       </li>
                       <li class="uk-nav-divider"></li>
                       <li v-for="menuItem in menu.cayAnTrai.nhietDoi" :key="menuItem.text">
-                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </div>
                   <div>
                     <ul class="uk-nav uk-dropdown-nav mn-product-sub-categories">
                       <li class="uk-nav-header">
-                        <a href="">Ôn đới</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái ôn đới' } }">Ôn đới</router-link>
                       </li>
                       <li class="uk-nav-divider"></li>
                       <li v-for="menuItem in menu.cayAnTrai.onDoi" :key="menuItem.text">
-                        <a href="" :class="{ highlight: menuItem.highlight }">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </div>
