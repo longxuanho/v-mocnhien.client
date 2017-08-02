@@ -113,58 +113,58 @@
   
                 <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true" v-if="menu">
                   <li class="uk-parent">
-                    <a>Thảo dược</a>
+                    <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược' } }">Thảo dược</router-link>
                     <ul class="uk-nav-sub">
                       <li>
-                        <a>Nhập ngoại</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược nhập ngoại' } }">Nhập ngoại</router-link>
                         <ul>
                           <li v-for="menuItem in menu.thaoDuoc.nhapNgoai" :key="menuItem.text">
-                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a>Trong nước</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược trong nước' } }">Trong nước</router-link>
                         <ul>
                           <li v-for="menuItem in menu.thaoDuoc.trongNuoc" :key="menuItem.text">
-                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </li>
                   <li class="uk-parent">
-                    <a>Giống hoa</a>
+                    <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Giống hoa' } }">Giống hoa</router-link>
                     <ul class="uk-nav-sub">
                       <li v-for="menuItem in menu.giongHoa" :key="menuItem.text">
-                        <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </li>
                   <li class="uk-parent">
-                    <a>Cây cảnh</a>
+                    <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây cảnh' } }">Cây cảnh</router-link>
                     <ul class="uk-nav-sub">
                       <li v-for="menuItem in menu.cayCanh" :key="menuItem.text">
-                        <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                       </li>
                     </ul>
                   </li>
                   <li class="uk-parent">
-                    <a>Cây ăn trái</a>
+                    <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái' } }">Cây ăn trái</router-link>
                     <ul class="uk-nav-sub">
                       <li>
-                        <a>Nhiệt đới</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái nhiệt đới' } }">Nhiệt đới</router-link>
                         <ul>
                           <li v-for="menuItem in menu.cayAnTrai.nhietDoi" :key="menuItem.text">
-                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a>Ôn đới</a>
+                        <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái ôn đới' } }">Ôn đới</router-link>
                         <ul>
                           <li v-for="menuItem in menu.cayAnTrai.onDoi" :key="menuItem.text">
-                            <a :class="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
                           </li>
                         </ul>
                       </li>
