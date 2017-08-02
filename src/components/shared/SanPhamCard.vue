@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-visible-toggle uk-inline" v-if="sanPham">
-      <a class="uk-card-media-top uk-inline">
+      <router-link class="uk-card-media-top uk-inline" :to="{ name: 'SanPhamDetails', params: { id: sanPham._id } }">
         <div class="ui label mn-counter uk-hidden-hover">
           <i class="cubes icon"></i> {{ sanPham.soLuong | number }}
         </div>
@@ -9,12 +9,12 @@
         <span class="ui right ribbon label uk-position-bottom" v-if="sanPham.dacTinh">
           <span>{{ sanPham.dacTinh }}</span>
         </span>
-      </a>
-      <a class="uk-card-body">
+      </router-link>
+      <router-link class="uk-card-body" :to="{ name: 'SanPhamDetails', params: { id: sanPham._id } }">
         <h3 class="uk-card-title">{{ sanPham.ten }}</h3>
   
         <p v-if="sanPham.trichDan" class="uk-text-small uk-text-justify">{{ sanPham.trichDan }}</p>
-      </a>
+      </router-link>
       <div style="height: 68px;"></div>
       <div class="uk-card-footer uk-position-bottom">
         <div class="subtitle uk-inline" style="width: 100%">

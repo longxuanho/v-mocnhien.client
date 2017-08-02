@@ -3,13 +3,13 @@
     <mn-hero></mn-hero>
     <mn-secondary-hero></mn-secondary-hero>
 
-    <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" v-if="bestSellers" :sanPhams="bestSellers"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Sản phẩm mới'" v-if="newReleases" :sanPhams="newReleases"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây lớn'" v-if="cayLons" :sanPhams="cayLons"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs"  :sanPhams="herbs"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Giống hoa'" v-if="flowers" :sanPhams="flowers"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây cảnh'" v-if="ornamentalPlants" :sanPhams="ornamentalPlants"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây ăn trái'" v-if="fruitTrees" :sanPhams="fruitTrees"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" v-if="bestSellers.length" :sanPhams="bestSellers"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Sản phẩm mới'" v-if="newReleases.length" :sanPhams="newReleases"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây lớn'" v-if="cayLons.length" :sanPhams="cayLons"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs.length"  :sanPhams="herbs"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Giống hoa'" v-if="flowers.length" :sanPhams="flowers"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây cảnh'" v-if="ornamentalPlants.length" :sanPhams="ornamentalPlants"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây ăn trái'" v-if="fruitTrees.length" :sanPhams="fruitTrees"></mn-san-pham-hightlight>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
       </h4>
   
       <h4 class="uk-heading-line mn-cursor-pointer" v-if="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
-        <span class="mn-ribbon">{{ category }}</span>
+        <router-link class="mn-ribbon" :to="{ name: 'SanPhams', query: { s: category } }">{{ category }}</router-link>
       </h4>
   
       <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-5@xl uk-grid-small uk-grid-match" uk-grid>
@@ -17,7 +17,7 @@
       </div>
   
       <div style="margin-top: 2rem; text-align: center;" v-if="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
-        <a href="" class="uk-button uk-button-default mn-button-effect">Xem tất cả</a>
+        <router-link class="uk-button uk-button-default mn-button-effect" :to="{ name: 'SanPhams', query: { s: category } }">Xem tất cả</router-link>
       </div>
     </div>
   
@@ -37,6 +37,11 @@ export default {
   props: ['category', 'sanPhams'],
   components: {
     mnSanPhamCard: SanPhamCard
+  },
+  methods: {
+    goToCategory(category) {
+      this.$router.push({ name: 'SanPhams', query: { s: category } });
+    }
   }
 }
 </script>
