@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-container uk-container-expand" v-if="sanPhams.length > 0">
+    <div class="uk-container uk-container-expand" v-if="!isLoading">
   
       <h4 class="uk-heading-line" v-if="(category === 'Sản phẩm bán chạy') || (category === 'Sản phẩm mới')">
         <span class="mn-ribbon">{{ category }}</span>
@@ -21,7 +21,7 @@
       </div>
     </div>
   
-    <div class="mn-spinner mn-spinner-pulse" v-if="!sanPhams.length"></div>
+    <div class="mn-spinner mn-spinner-pulse" v-if="isLoading"></div>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
     return {
     }
   },
-  props: ['category', 'sanPhams'],
+  props: ['category', 'sanPhams', 'isLoading'],
   components: {
     mnSanPhamCard: SanPhamCard
   },

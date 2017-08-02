@@ -82,6 +82,8 @@ export default {
     mnSanPhamCard: SanPhamCard,
   },
   created() {
+    window.scrollTo(0, 0);
+    
     this.page.search = this.$route.query['s'] || '';
     this.resolveSanPhams();
   }

@@ -208,6 +208,7 @@ export default {
     number: numberFilter
   },
   created() {
+    window.scrollTo(0, 0);
     this.selectedId = this.$route.params['id'];
 
     if (this.selectedId)

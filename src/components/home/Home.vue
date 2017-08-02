@@ -3,13 +3,13 @@
     <mn-hero></mn-hero>
     <mn-secondary-hero></mn-secondary-hero>
 
-    <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" v-if="bestSellers.length" :sanPhams="bestSellers"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Sản phẩm mới'" v-if="newReleases.length" :sanPhams="newReleases"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây lớn'" v-if="cayLons.length" :sanPhams="cayLons"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs.length"  :sanPhams="herbs"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Giống hoa'" v-if="flowers.length" :sanPhams="flowers"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây cảnh'" v-if="ornamentalPlants.length" :sanPhams="ornamentalPlants"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Cây ăn trái'" v-if="fruitTrees.length" :sanPhams="fruitTrees"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" v-if="bestSellers.length" :sanPhams="bestSellers" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Sản phẩm mới'" v-if="newReleases.length" :sanPhams="newReleases" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây lớn'" v-if="cayLons.length" :sanPhams="cayLons" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs.length"  :sanPhams="herbs" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Giống hoa'" v-if="flowers.length" :sanPhams="flowers" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây cảnh'" v-if="ornamentalPlants.length" :sanPhams="ornamentalPlants" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Cây ăn trái'" v-if="fruitTrees.length" :sanPhams="fruitTrees" :isLoading="isLoading"></mn-san-pham-hightlight>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
   name: 'home',
   data() {
     return {
+      isLoading: false,
       apiEndPoint: process.env.API_ENDPOINT + '/san_phams',
       bestSellers: [],
       newReleases: [],
@@ -34,8 +35,11 @@ export default {
   },
   methods: {
     resolveData() {
+      this.isLoading = true;
+
       this.$http.get(this.apiEndPoint, { params: { nhom: '', status: '', tags: 'New Releases, Best Seller, Pinned', search: '', fields: 'nhom ten ma tags cover soLuong trichDan giaBan dvt dacTinh chieuCao', page: '1', limit: '50', sort: 'tenLatinized' } })
         .then(response => {
+          this.isLoading = false;
           let result = response.body;
 
           this.bestSellers = result.filter(sanpham => sanpham.tags.includes('Best Seller'));
@@ -46,6 +50,7 @@ export default {
           this.fruitTrees = result.filter(sanpham => sanpham.nhom === 'Cây ăn trái' && sanpham.tags.includes('Pinned'));
           this.cayLons = result.filter(sanpham => sanpham.nhom === 'Cây lớn' && sanpham.tags.includes('Pinned'));
         }, error => {
+          this.isLoading = false;
           console.log(error);
         });
     }
