@@ -18,7 +18,7 @@
   
                 <label class="uk-form-label" for="soLuong">Số lượng:</label>
                 <div class="uk-form-controls">
-                  <input type="number" name="soLuong" v-model="soLuong" class="uk-input" style="max-width: 6rem;" v-validate="{ rules: { required: true, numeric: true, min_value: 1, max_value: sanPham.soLuong } }" autofocus :class="{'uk-form-danger': errors.has('soLuong')}">
+                  <input type="number" name="soLuong" v-model.number="soLuong" class="uk-input" style="max-width: 6rem;" v-validate="{ rules: { required: true, numeric: true, min_value: 1, max_value: sanPham.soLuong } }" autofocus :class="{'uk-form-danger': errors.has('soLuong')}">
                 </div>
                 <p class="text-right">Hiện đang sẵn có {{ sanPham.soLuong | number }} cây.</p>
               </div>

@@ -67,12 +67,13 @@
               </li>
   
               <li>
-                <a href="" uk-icon="icon: cart">
+                <router-link :to="{ name: 'GioHangDetails' }" uk-icon="icon: cart">
                   <div class="mn-bubble">
                     <a class="ui tiny orange circular label">0</a>
                   </div>
-                </a>
+                </router-link>
               </li>
+  
             </ul>
           </div>
         </nav>

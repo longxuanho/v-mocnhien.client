@@ -60,5 +60,9 @@ export const donHangMixin = {
 
       localStorage.setItem('donHang', JSON.stringify(donHang));
     },
+    onResolveCart() {
+      this.resolveDonHangLocal(this.donHang);
+      this.saveDonHangLocal(this.donHang);
+    }
   }
 }

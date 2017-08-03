@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Home from '@/components/home/Home'
 import SanPhamList from '@/components/sanPhams/SanPhamList'
 import SanPhamDetails from '@/components/sanPhams/SanPhamDetails'
-
+import GiohangDetails from '@/components/gioHang/GioHangDetails'
 
 Vue.use(Router)
 
@@ -23,6 +23,10 @@ export default new Router({
       path: '/san-pham/:id',
       name: 'SanPhamDetails',
       component: SanPhamDetails
+    }, {
+      path: '/gio-hang',
+      name: 'GioHangDetails',
+      component: GiohangDetails
     }
   ]
 })
