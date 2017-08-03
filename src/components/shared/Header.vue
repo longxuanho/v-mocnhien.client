@@ -4,8 +4,11 @@
       <div class="uk-container uk-container-expand">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="boundary-align: true; align: center;">
           <div class="uk-navbar-left">
-            <router-link class="uk-navbar-item uk-logo" :to="{ name: 'Home' }">
+            <router-link class="uk-navbar-item uk-logo uk-visible@s" :to="{ name: 'Home' }">
               <canvas width="190" height="50" uk-svg src="/static/images/logo.svg"></canvas>
+            </router-link>
+            <router-link class="uk-navbar-item uk-logo uk-hidden@s" :to="{ name: 'Home' }">
+              <canvas width="170" height="50" uk-svg src="/static/images/logo.svg"></canvas>
             </router-link>
           </div>
           <div class="uk-navbar-right">

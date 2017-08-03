@@ -13,7 +13,6 @@
         </div>
   
         <div class="uk-navbar-right">
-  
           <!--Hidden on small devices-->
           <ul class="uk-navbar-nav" v-if="menu && (clientWidth >= 960)">
             <li>
@@ -204,9 +203,8 @@ export default {
   data() {
     return {
       searchText: '',
+      apiEndpoint: process.env.API_MENU,
       menu: this.initMenu(),
-      menuResource: this.$resource(process.env.API_MENU),
-      viCollator: new Intl.Collator('vi'),
       clientWidth: this.resolveClientWidth()
     }
   },
@@ -241,12 +239,7 @@ export default {
 
       if (!rawMenu || !rawMenu.length) return;
 
-      // Sort data by Vietnamese
-      rawMenu = rawMenu.sort((a, b) => {
-        return this.viCollator.compare(a.text, b.text);
-      });
-
-      rawMenu.forEach(item => {
+      rawMenu.forEach((item) => {
         if (item.category === 'Thảo dược') {
           if (item.group === 'Nhập ngoại') resolvedMenu.thaoDuoc.nhapNgoai.push(item);
           if (item.group === 'Trong nước') resolvedMenu.thaoDuoc.trongNuoc.push(item);
@@ -264,7 +257,9 @@ export default {
     },
 
     resolveClientWidth() {
-      return document.documentElement.clientWidth || 0;
+      return window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
     }
   },
 
@@ -275,9 +270,11 @@ export default {
       this.clientWidth = this.resolveClientWidth();
     }, 1000);
 
-    this.menuResource.get()
+    this.$http.get(this.apiEndpoint)
       .then(response => {
         this.menu = this.resolveMenu(response.body.menu);
+      }, error => {
+        console.log(error);
       });
   }
 }
