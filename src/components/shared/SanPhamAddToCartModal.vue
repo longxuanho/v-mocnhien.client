@@ -18,7 +18,7 @@
   
                 <label class="uk-form-label" for="soLuong">Số lượng:</label>
                 <div class="uk-form-controls">
-                  <input type="number" class="uk-input" name="soLuong" id="soLuong" style="max-width: 6rem;" required autofocus>
+                  <input type="number" name="soLuong" v-model="soLuong" class="uk-input" style="max-width: 6rem;" v-validate="{ rules: { required: true, numeric: true, min_value: 1, max_value: sanPham.soLuong } }" autofocus :class="{'uk-form-danger': errors.has('soLuong')}">
                 </div>
                 <p class="text-right">Hiện đang sẵn có {{ sanPham.soLuong | number }} cây.</p>
               </div>
@@ -30,7 +30,7 @@
   
       <div class="uk-modal-footer uk-text-right" v-if="sanPham">
         <button class="uk-button uk-button-default" type="button">Trở về</button>
-        <button class="uk-button uk-button-primary" type="submit">Thêm vào giỏ</button>
+        <button class="uk-button uk-button-primary" type="submit" @click.prevent="addToCard" :disabled="errors.has('soLuong')">Thêm vào giỏ</button>
       </div>
   
     </form>
@@ -38,24 +38,51 @@
 </template>
 
 <script>
+import $ from 'jquery';
 import numberFilter from '../../services/numberFilter';
 import EventBus from '../../services/event-bus';
-import $ from 'jquery';
+import { donHangMixin } from '../../services/donHangMixin';
 
 export default {
+  mixins: [donHangMixin],
+  data() {
+    return {
+      soLuong: 1
+    }
+  },
   props: ['sanPham'],
   filters: {
     number: numberFilter
   },
   methods: {
+    addToCard() {
+      this.$UIkit.modal('#modal-add-to-cart').hide();
+      
+      if (!this.sanPham || !this.soLuong) return;
 
+      let donHang = this.getDonHangLocal();
+
+      // Nếu item đã tồn tại trong giỏ hàng, return;
+      if (donHang.sanPhams.find(itemInCart => itemInCart._id === this.sanPham._id)) return;
+
+      let newItem = { _id: this.sanPham._id, ten: this.sanPham.ten, ma: this.sanPham.ma, cover: this.sanPham.cover, donGia: this.sanPham.giaBan, soLuong: this.soLuong, thanhTien: this.sanPham.giaBan * this.soLuong, sanCo: this.sanPham.soLuong };
+      donHang.sanPhams.push(newItem);
+
+      this.resolveDonHangLocal(donHang);
+      this.saveDonHangLocal(donHang);
+      this.$toastr.success(`Sản phẩm ${ this.sanPham.ten } (${ this.sanPham.ma }) đã được thêm vào giỏ hàng của bạn.`, 'Giỏ hàng được cập nhật');
+    }
   },
   mounted() {
+    $(this.$el).on('show', () => {
+      this.soLuong = 1;
+    });
     $(this.$el).on('hide', () => {
       EventBus.$emit('HIDE_ADD_TO_CART_MODAL', this.sanPham);
     });
   },
   destroyed() {
+    $(this.$el).off('show');
     $(this.$el).off('hide');
     $('#modal-add-to-cart').remove();
   }

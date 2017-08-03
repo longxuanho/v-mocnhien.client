@@ -4,13 +4,18 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
+import VeeValidate from 'vee-validate';
 
 import UIkit from 'uikit/dist/js/uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
+import Toastr from 'toastr';
 
 Object.defineProperty(Vue.prototype, '$UIkit', { value: UIkit });
+Object.defineProperty(Vue.prototype, '$toastr', { value: Toastr });
+
 
 Vue.use(VueResource);
+Vue.use(VeeValidate);
 
 /* eslint-disable no-new */
 new Vue({

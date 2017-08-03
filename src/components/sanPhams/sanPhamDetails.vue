@@ -83,7 +83,7 @@
               </div>
               <div v-else>
                 <!-- Click to add to cart -->
-                <button class="uk-button uk-button-default mn-button-effect" :class="{'uk-button-danger': isHetHang}" :disabled="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
+                <button class="uk-button uk-button-default mn-button-effect" @click="showAddToCartModal" :class="{'uk-button-danger': isHetHang}" :disabled="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
               </div>
             </div>
   
@@ -133,6 +133,7 @@
 
 <script>
 import numberFilter from '../../services/numberFilter';
+import EventBus from '../../services/event-bus';
 
 export default {
   data() {
@@ -176,7 +177,9 @@ export default {
     showGalleryModal() {
       this.$UIkit.modal("#modal-center").show();
     },
-
+    showAddToCartModal() {
+      EventBus.$emit('SHOW_ADD_TO_CART_MODAL', this.sanPham);
+    },
     nextCover() {
       if (!this.sanPham || !this.sanPham.gallery || !this.sanPham.gallery.length) return;
 

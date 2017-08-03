@@ -48,5 +48,6 @@ export default {
 @import './assets/scss/semantic-ui';
 @import './assets/scss/spinkit';
 @import './assets/scss/pagination';
+@import './assets/scss/toastr';
 @import './assets/scss/global';
 </style>
