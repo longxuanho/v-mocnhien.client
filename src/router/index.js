@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/home/Home'
-import SanPhamList from '@/components/sanPhams/sanPhamList'
+import SanPhamList from '@/components/sanPhams/SanPhamList'
 import SanPhamDetails from '@/components/sanPhams/SanPhamDetails'
 
 

@@ -2,14 +2,15 @@
   <div>
     <mn-hero></mn-hero>
     <mn-secondary-hero></mn-secondary-hero>
-
+  
     <mn-san-pham-hightlight :category="'Sản phẩm bán chạy'" v-if="bestSellers.length" :sanPhams="bestSellers" :isLoading="isLoading"></mn-san-pham-hightlight>
     <mn-san-pham-hightlight :category="'Sản phẩm mới'" v-if="newReleases.length" :sanPhams="newReleases" :isLoading="isLoading"></mn-san-pham-hightlight>
     <mn-san-pham-hightlight :category="'Cây lớn'" v-if="cayLons.length" :sanPhams="cayLons" :isLoading="isLoading"></mn-san-pham-hightlight>
-    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs.length"  :sanPhams="herbs" :isLoading="isLoading"></mn-san-pham-hightlight>
+    <mn-san-pham-hightlight :category="'Thảo dược'" v-if="herbs.length" :sanPhams="herbs" :isLoading="isLoading"></mn-san-pham-hightlight>
     <mn-san-pham-hightlight :category="'Giống hoa'" v-if="flowers.length" :sanPhams="flowers" :isLoading="isLoading"></mn-san-pham-hightlight>
     <mn-san-pham-hightlight :category="'Cây cảnh'" v-if="ornamentalPlants.length" :sanPhams="ornamentalPlants" :isLoading="isLoading"></mn-san-pham-hightlight>
     <mn-san-pham-hightlight :category="'Cây ăn trái'" v-if="fruitTrees.length" :sanPhams="fruitTrees" :isLoading="isLoading"></mn-san-pham-hightlight>
+  
   </div>
 </template>
 
@@ -23,6 +24,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      selectedSanPham: null,
       apiEndPoint: process.env.API_ENDPOINT + '/san_phams',
       bestSellers: [],
       newReleases: [],
@@ -61,7 +63,7 @@ export default {
   components: {
     mnHero: Hero,
     mnSecondaryHero: SecondaryHero,
-    mnSanPhamHightlight: SanPhamHightlight
+    mnSanPhamHightlight: SanPhamHightlight,
   }
 }
 </script>

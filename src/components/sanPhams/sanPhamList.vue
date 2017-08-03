@@ -12,7 +12,9 @@
   
     <div class="mn-notify" v-if="!isLoading && !sanPhams.length">
       <h3>Không có sản phẩm phù hợp.</h3>
-      <p><em>Rất tiếc! Chúng tôi không tìm thấy kết quả mà bạn yêu cầu. Vui lòng thử nội dung tìm kiếm khác hoặc liên hệ với chúng tôi qua hệ thống chat online để được tư vấn thêm về sản phẩm.</em></p>
+      <p>
+        <em>Rất tiếc! Chúng tôi không tìm thấy kết quả mà bạn yêu cầu. Vui lòng thử nội dung tìm kiếm khác hoặc liên hệ với chúng tôi qua hệ thống chat online để được tư vấn thêm về sản phẩm.</em>
+      </p>
     </div>
   
   </div>
@@ -28,6 +30,7 @@ export default {
     return {
       apiEndPoint: process.env.API_ENDPOINT + '/san_phams',
       isLoading: false,
+      selectedSanPham: null,
       sanPhams: [],
       page: {
         currentPage: 1,
@@ -83,10 +86,10 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
-    
+
     this.page.search = this.$route.query['s'] || '';
     this.resolveSanPhams();
-  }
+  },
 }
 </script>
 

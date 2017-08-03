@@ -26,7 +26,7 @@
               <button class="uk-button uk-button-default mn-button-effect mn-success">Trong giỏ</button>
             </div>
             <div v-else>
-              <button class="uk-button uk-button-default mn-button-effect" :class="{'uk-button-danger': isHetHang}" :disabled="isHetHang">
+              <button class="uk-button uk-button-default mn-button-effect" @click="showAddToCartModal" :class="{'uk-button-danger': isHetHang}" :disabled="isHetHang">
                 {{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}
               </button>
             </div>
@@ -39,6 +39,7 @@
 
 <script>
 import numberFilter from '../../services/numberFilter';
+import EventBus from '../../services/event-bus';
 
 export default {
   data() {
@@ -57,6 +58,11 @@ export default {
     number: numberFilter
   },
   props: ['sanPham'],
+  methods: {
+    showAddToCartModal() {
+      EventBus.$emit('SHOW_ADD_TO_CART_MODAL', this.sanPham);
+    }
+  }
 }
 </script>
 
