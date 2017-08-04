@@ -45,13 +45,7 @@
               <input type="number" class="uk-input" :value="itemsCount" disabled>
             </td>
             <td colspan="3" class="uk-text-right">Tổng cộng:
-              <strong class="mn-numeral">{{ donHang.tongCong - donHang.phiVanChuyen | number }} đ</strong>
-            </td>
-          </tr>
-          <tr style="border-top: none;">
-            <td colspan="6" class="uk-text-right">
-              Chiết khấu ({{ donHang.chietKhauPercent }} %):
-              <strong class="mn-numeral">{{ chietKhau | number }} đ</strong>
+              <strong class="mn-numeral">{{ donHang.tongCong | number }} đ</strong>
             </td>
           </tr>
         </tbody>
@@ -74,7 +68,7 @@
       <div class="uk-position-left">
         <router-link :to="{ name: 'Home' }" class="uk-button uk-button-default mn-button-effect">Chọn tiếp</router-link>
       </div>
-      <router-link :to="{ name: 'Home' }" class="uk-button uk-button-default mn-button-effect uk-button-primary" tag="button" :disabled="errors.any()">Thanh toán</router-link>
+      <router-link :to="{ name: 'ThanhToanDetails' }" class="uk-button uk-button-default mn-button-effect uk-button-primary" tag="button" :disabled="errors.any()">Thanh toán</router-link>
     </div>
 
     <div uk-alert id="help-chiet-khau">
@@ -127,9 +121,6 @@ export default {
     itemsCount() {
       return this.$store.getters.donHang.itemsCount;
     },
-    chietKhau() {
-      return - Math.ceil((this.$store.getters.donHang.chietKhauPercent / 100 * this.$store.getters.donHang.tongCong) / 1000) * 1000;
-    }
   },
   methods: {
     removeSanPhamInDonHang(sanPham) {

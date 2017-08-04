@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,10 @@ export const store = new Vuex.Store({
     sanPhamsInDonHang: state => {
       if (!state.donHang) return [];
       return state.donHang.sanPhams;
+    },
+    thongTinDonHang: state => {
+      if (!state.donHang) return null;
+      return _.omit(state.donHang, ['sanPhams', 'itemsCount', 'tongCong', 'chietKhauPercent', 'tongThanhToan', 'trangThai'])
     }
   },
   mutations: {
@@ -41,6 +46,24 @@ export const store = new Vuex.Store({
           trangThai: 'Chờ xác thực'
         };
     },
+    resetThongTinDonHang(state) {
+      let thongTinDonHang = {
+        hoTen: '',
+        dienThoai: '',
+        email: '',
+        isThongTinGiaoHangKhacThongTinThanhToan: false,
+        hoTenNguoiNhan: '',
+        dienThoaiNguoiNhan: '',
+        diaChi: '',
+        tinhThanh: '',
+        quanHuyen: '',
+
+        cachThanhToan: 'Tiền mặt',
+        ghiChu: '',
+        phiVanChuyen: 0,
+      }
+      Object.assign(state.donHang, thongTinDonHang)
+    },
     addSanPhamToDonHang(state, payload) {
       if (!state.donHang || !payload || !payload.sanPham || !payload.sanPham._id || !payload.soLuong) return;
 
@@ -51,15 +74,15 @@ export const store = new Vuex.Store({
       state.donHang.sanPhams.push(newItem);
     },
     removeSanPhamInDonHang(state, payload) {
-      if  (!state.donHang || !payload || !payload.sanPham || !payload.sanPham._id) return;
-      
+      if (!state.donHang || !payload || !payload.sanPham || !payload.sanPham._id) return;
+
       state.donHang.sanPhams.splice(state.donHang.sanPhams.indexOf(payload.sanPham), 1);
     },
     modifySoLuongSanPhamInDonHang(state, payload) {
-      if  (!state.donHang || !payload || !payload.sanPham || !payload.soLuong) return;
+      if (!state.donHang || !payload || !payload.sanPham || !payload.soLuong) return;
 
       let found = state.donHang.sanPhams.find((item) => item._id === payload.sanPham._id);
-      
+
       if (!found) return;
 
       found.soLuong = payload.soLuong;
@@ -80,44 +103,52 @@ export const store = new Vuex.Store({
         state.donHang.tongCong += item.thanhTien;
       });
 
-      if (state.donHang.itemsCount >= 2688) state.donHang.chietKhauPercent = 42;
-      else if (state.donHang.itemsCount >= 1344) state.donHang.chietKhauPercent = 33;
-      else if (state.donHang.itemsCount >= 672) state.donHang.chietKhauPercent = 25;
-      else if (state.donHang.itemsCount >= 336) state.donHang.chietKhauPercent = 18;
-      else if (state.donHang.itemsCount >= 168) state.donHang.chietKhauPercent = 12;
-      else if (state.donHang.itemsCount >= 84) state.donHang.chietKhauPercent = 7;
-      else if (state.donHang.itemsCount >= 42) state.donHang.chietKhauPercent = 3;
-      else state.donHang.chietKhauPercent = 0;
+      state.donHang.chietKhauPercent = 0;
 
       let chietKhau = - Math.ceil((state.donHang.chietKhauPercent / 100 * state.donHang.tongCong) / 1000) * 1000;
 
       state.donHang.tongThanhToan = state.donHang.tongCong + chietKhau + state.donHang.phiVanChuyen;
+
     },
     saveDonHangLocal(state) {
       if (!state.donHang) return;
 
       localStorage.setItem('donHang', JSON.stringify(state.donHang));
     },
+    syncThongTinDonHangLocal(state, payload) {
+      if (!state.donHang || !payload.thongTinDonHang) return
+
+      Object.assign(state.donHang, payload.thongTinDonHang)
+    }
   },
   actions: {
     initDonHang(context) {
-      context.commit('initDonHang');
+      context.commit('initDonHang')
+    },
+    resetThongTinDonHang(context) {
+      context.commit('resetThongTinDonHang')
+      context.dispatch('resolveDonHang')
     },
     addSanPhamToDonHang(context, payload) {
       context.commit('addSanPhamToDonHang', payload);
-      context.dispatch('resolveDonHang');
+      context.dispatch('resolveDonHang')
     },
     removeSanPhamInDonHang(context, payload) {
       context.commit('removeSanPhamInDonHang', payload);
-      context.dispatch('resolveDonHang');
+      context.dispatch('resolveDonHang')
     },
     modifySoLuongSanPhamInDonHang(context, payload) {
       context.commit('modifySoLuongSanPhamInDonHang', payload);
-      context.dispatch('resolveDonHang');
+      context.dispatch('resolveDonHang')
+    },
+    syncThongTinDonHangLocal(context, payload) {
+      context.commit('syncThongTinDonHangLocal', payload)
+      context.dispatch('resolveDonHang')
     },
     resolveDonHang(context) {
-      context.commit('resolveDonHang');
-      context.commit('saveDonHangLocal');
+      context.commit('resolveDonHang')
+      context.commit('saveDonHangLocal')
     },
+
   }
 })
