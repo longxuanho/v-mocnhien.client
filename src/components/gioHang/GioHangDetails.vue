@@ -26,12 +26,14 @@
             <td>{{ item.ten }}</td>
             <td class="uk-text-right">
               <!-- @Input resolve cart, min, max, required -->
-              <input type="number" class="uk-input" v-model="item.soLuong">
+              <input type="number" :name="item._id" class="uk-input" :value="item.soLuong" :class="{'uk-form-danger': errors.has(item._id)}" 
+                v-validate.initial="{ rules: { required: true, numeric: true, min_value: 1, max_value: item.sanCo } }"
+                @input="modifySoLuongSanPhamInDonHang($event, item)">
             </td>
             <td class="uk-text-right">{{ item.donGia | number }}</td>
             <td class="uk-text-right">{{ item.thanhTien | number }}</td>
             <td>
-              <a uk-icon="icon: close" @click.prevent="removeItemFromCart(item)"></a>
+              <a uk-icon="icon: close" @click.prevent="removeSanPhamInDonHang(item)"></a>
             </td>
           </tr>
           <tr v-if="!donHang.sanPhams.length">
@@ -72,9 +74,9 @@
       <div class="uk-position-left">
         <router-link :to="{ name: 'Home' }" class="uk-button uk-button-default mn-button-effect">Chọn tiếp</router-link>
       </div>
-      <router-link :to="{ name: 'Home' }" class="uk-button uk-button-default mn-button-effect uk-button-primary">Thanh toán</router-link>
+      <router-link :to="{ name: 'Home' }" class="uk-button uk-button-default mn-button-effect uk-button-primary" tag="button" :disabled="errors.any()">Thanh toán</router-link>
     </div>
-  
+
     <div uk-alert id="help-chiet-khau">
       <h3>Chính sách chiết khấu</h3>
       <p>Hiện tại, Mộc Nhiên Farm áp dụng chính sách chiết khấu cho các sản phẩm từ nông trại như sau:</p>
@@ -116,39 +118,35 @@
 
 <script>
 import numberFilter from '../../services/numberFilter';
-import { donHangMixin } from '../../services/donHangMixin';
 
 export default {
-  mixins: [donHangMixin],
-  data() {
-    return {
-      donHang: null
-    }
-  },
   computed: {
+    donHang() {
+      return this.$store.getters.donHang;
+    },
     itemsCount() {
-      return this.getDonHangLocal().itemsCount;
+      return this.$store.getters.donHang.itemsCount;
     },
     chietKhau() {
-      return - Math.ceil((this.donHang.chietKhauPercent / 100 * this.donHang.tongCong) / 1000) * 1000;
+      return - Math.ceil((this.$store.getters.donHang.chietKhauPercent / 100 * this.$store.getters.donHang.tongCong) / 1000) * 1000;
     }
   },
   methods: {
-    removeItemFromCart(item) {
-      if (!item) return;
+    removeSanPhamInDonHang(sanPham) {
+      if (!sanPham) return;
 
-      this.donHang.sanPhams.splice(this.donHang.sanPhams.indexOf(item), 1);
+      this.$store.dispatch('removeSanPhamInDonHang', { sanPham: sanPham })
+    },
+    modifySoLuongSanPhamInDonHang(event, sanPham) {
+      let soLuong = +event.target.value;
+      if (!sanPham || !soLuong) return;
 
-      this.onResolveCart();
+      this.$store.dispatch('modifySoLuongSanPhamInDonHang', { sanPham: sanPham, soLuong: soLuong })
     }
   },
   filters: {
     number: numberFilter
   },
-  created() {
-    this.donHang = this.getDonHangLocal();
-    this.onResolveCart();
-  }
 }
 </script>
 

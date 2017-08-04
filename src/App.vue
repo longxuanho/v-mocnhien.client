@@ -40,6 +40,10 @@ export default {
       this.selectedSanPham = null;
     });
   },
+  created() {
+    // Init store
+    this.$store.dispatch('initDonHang');
+  }
 }
 </script>
 

@@ -39,15 +39,12 @@
 
 <script>
 import numberFilter from '../../services/numberFilter';
-import { donHangMixin } from '../../services/donHangMixin';
 import EventBus from '../../services/event-bus';
 
 export default {
-  mixins: [donHangMixin],
   computed: {
     isItemInCart() {
-      if (!this.sanPham) return false;
-      return this.getDonHangLocal().sanPhams.findIndex((sanPham => sanPham._id === this.sanPham._id)) >= 0;
+      return this.$store.getters.sanPhamsInDonHang.findIndex((sanPham => sanPham._id === this.sanPham._id)) >= 0
     },
     isHetHang() {
       return this.sanPham && this.sanPham.soLuong <= 0;

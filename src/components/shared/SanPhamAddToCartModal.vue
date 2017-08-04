@@ -41,10 +41,8 @@
 import $ from 'jquery';
 import numberFilter from '../../services/numberFilter';
 import EventBus from '../../services/event-bus';
-import { donHangMixin } from '../../services/donHangMixin';
 
 export default {
-  mixins: [donHangMixin],
   data() {
     return {
       soLuong: 1
@@ -60,16 +58,8 @@ export default {
       
       if (!this.sanPham || !this.soLuong) return;
 
-      let donHang = this.getDonHangLocal();
-
-      // Nếu item đã tồn tại trong giỏ hàng, return;
-      if (donHang.sanPhams.find(itemInCart => itemInCart._id === this.sanPham._id)) return;
-
-      let newItem = { _id: this.sanPham._id, ten: this.sanPham.ten, ma: this.sanPham.ma, cover: this.sanPham.cover, donGia: this.sanPham.giaBan, soLuong: this.soLuong, thanhTien: this.sanPham.giaBan * this.soLuong, sanCo: this.sanPham.soLuong };
-      donHang.sanPhams.push(newItem);
-
-      this.resolveDonHangLocal(donHang);
-      this.saveDonHangLocal(donHang);
+      this.$store.dispatch('addSanPhamToDonHang', { sanPham: this.sanPham, soLuong: this.soLuong });
+      
       this.$toastr.success(`Sản phẩm ${ this.sanPham.ten } (${ this.sanPham.ma }) đã được thêm vào giỏ hàng của bạn.`, 'Giỏ hàng được cập nhật');
     }
   },

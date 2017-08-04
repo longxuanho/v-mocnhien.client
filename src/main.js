@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
+import { store } from './store/store';
 
 import UIkit from 'uikit/dist/js/uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
@@ -25,7 +26,8 @@ new Vue({
   components: { App },
   mounted: function () {
     UIkit.use(Icons);
-  }
+  },
+  store: store
 });
 
 Vue.config.productionTip = false
