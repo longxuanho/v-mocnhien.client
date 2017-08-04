@@ -69,7 +69,7 @@
               <li>
                 <router-link :to="{ name: 'GioHangDetails' }" uk-icon="icon: cart">
                   <div class="mn-bubble">
-                    <a class="ui tiny orange circular label">0</a>
+                    <a class="ui tiny orange circular label">{{ itemsCount }}</a>
                   </div>
                 </router-link>
               </li>
@@ -84,7 +84,11 @@
 
 <script>
 export default {
-
+  computed: {
+    itemsCount() {
+      return this.$store.getters.donHang.itemsCount
+    }
+  }
 }
 </script>
 

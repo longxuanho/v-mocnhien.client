@@ -93,6 +93,24 @@
                 </div>
               </div>
             </li>
+            <li class="mn-dynamic-cart">
+              <router-link :to="{ name: 'GioHangDetails' }" uk-icon="icon: cart">
+                <div class="mn-bubble">
+                  <a class="ui tiny orange circular label">{{ itemsCount }}</a>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+  
+          <!--Show on small devices-->
+          <ul class="uk-navbar-nav" v-if="menu && (clientWidth < 960)">
+            <li class="mn-dynamic-cart">
+              <router-link :to="{ name: 'GioHangDetails' }" uk-icon="icon: cart">
+                <div class="mn-bubble">
+                  <a class="ui tiny orange circular label">{{ itemsCount }}</a>
+                </div>
+              </router-link>
+            </li>
           </ul>
   
           <!--Show on small devices-->
@@ -211,6 +229,11 @@ export default {
   watch: {
     '$route'(to, from) {
       this.searchText = to.query['s'] || '';
+    }
+  },
+  computed: {
+    itemsCount() {
+      return this.$store.getters.donHang.itemsCount
     }
   },
   methods: {
@@ -353,6 +376,28 @@ export default {
 
   &:hover::before {
     right: 15px;
+  }
+}
+
+// Items Count trong giỏ hàng
+.mn-navbar-container:not(.uk-sticky-fixed) {
+  .mn-dynamic-cart {
+    display: none;
+  }
+}
+
+.mn-bubble {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .ui.circular.label {
+    padding: 0 !important;
+    line-height: 2;
   }
 }
 </style>

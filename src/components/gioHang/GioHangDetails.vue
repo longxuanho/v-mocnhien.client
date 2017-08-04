@@ -147,6 +147,9 @@ export default {
   filters: {
     number: numberFilter
   },
+  created() {
+    window.scrollTo(0, 0)
+  }
 }
 </script>
 

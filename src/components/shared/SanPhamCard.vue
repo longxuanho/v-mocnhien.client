@@ -23,7 +23,7 @@
           </div>
           <div class="uk-text-right">
             <div v-if="isItemInCart">
-              <button class="uk-button uk-button-default mn-button-effect mn-success">Trong giỏ</button>
+              <router-link class="uk-button uk-button-default mn-button-effect mn-success" :to="{ name: 'GioHangDetails' }">Trong giỏ</router-link>
             </div>
             <div v-else>
               <button class="uk-button uk-button-default mn-button-effect" @click="showAddToCartModal" :class="{'uk-button-danger': isHetHang}" :disabled="isHetHang">
