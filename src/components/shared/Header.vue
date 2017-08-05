@@ -63,7 +63,7 @@
                 <router-link :to="{ name: 'DonHangList' }">ĐƠN HÀNG</router-link>
               </li>
               <li class="uk-hidden@s">
-                <a href="" uk-icon="icon: album"></a>
+                <router-link :to="{ name: 'DonHangList' }" uk-icon="icon: album"></router-link>
               </li>
   
               <li>

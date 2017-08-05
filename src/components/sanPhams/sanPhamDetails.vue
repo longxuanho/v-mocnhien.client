@@ -58,7 +58,7 @@
                 </td>
               </tr>
               <tr>
-                <td>Số lượng sẵn có</td>
+                <td>Sẵn có</td>
                 <td>
                   <span v-if="sanPham.soLuong > 0">{{ sanPham.soLuong | number }}</span>
                   <span v-if="sanPham.soLuong <= 0">Hết hàng</span>

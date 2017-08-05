@@ -335,7 +335,6 @@ export default {
 
 .uk-navbar-right {
   min-width: 7rem;
-  text-align: right;
   justify-content: flex-end;
 }
 
