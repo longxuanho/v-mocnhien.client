@@ -136,7 +136,7 @@
                         <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược nhập ngoại' } }">Nhập ngoại</router-link>
                         <ul>
                           <li v-for="menuItem in menu.thaoDuoc.nhapNgoai" :key="menuItem.text">
-                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                            <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                           </li>
                         </ul>
                       </li>
@@ -144,7 +144,7 @@
                         <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Thảo dược trong nước' } }">Trong nước</router-link>
                         <ul>
                           <li v-for="menuItem in menu.thaoDuoc.trongNuoc" :key="menuItem.text">
-                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                            <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                           </li>
                         </ul>
                       </li>
@@ -154,7 +154,7 @@
                     <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Giống hoa' } }">Giống hoa</router-link>
                     <ul class="uk-nav-sub">
                       <li v-for="menuItem in menu.giongHoa" :key="menuItem.text">
-                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                        <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                       </li>
                     </ul>
                   </li>
@@ -162,7 +162,7 @@
                     <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây cảnh' } }">Cây cảnh</router-link>
                     <ul class="uk-nav-sub">
                       <li v-for="menuItem in menu.cayCanh" :key="menuItem.text">
-                        <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                        <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                       </li>
                     </ul>
                   </li>
@@ -173,7 +173,7 @@
                         <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái nhiệt đới' } }">Nhiệt đới</router-link>
                         <ul>
                           <li v-for="menuItem in menu.cayAnTrai.nhietDoi" :key="menuItem.text">
-                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                            <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                           </li>
                         </ul>
                       </li>
@@ -181,7 +181,7 @@
                         <router-link class="mn-bold" :to="{ name: 'SanPhams', query: { s: 'Cây ăn trái ôn đới' } }">Ôn đới</router-link>
                         <ul>
                           <li v-for="menuItem in menu.cayAnTrai.onDoi" :key="menuItem.text">
-                            <router-link :class="{ highlight: menuItem.highlight }" :to="{ name: 'SanPhams', query: { s: menuItem.keyword } }">{{ menuItem.text }}</router-link>
+                            <a :class="{ highlight: menuItem.highlight }" @click.stop.prevent="routeTo({ name: 'SanPhams', query: { s: menuItem.keyword } }, true)">{{ menuItem.text }}</a>
                           </li>
                         </ul>
                       </li>
@@ -265,6 +265,14 @@ export default {
           onDoi: []
         }
       }
+    },
+
+    routeTo(routeObject, isCloseMenu) {
+      if (!routeObject) return
+      
+      this.$router.push(routeObject)
+      if (isCloseMenu)
+        this.$UIkit.offcanvas('#product-menu-mobile').hide();
     },
 
     resolveMenu(rawMenu) {

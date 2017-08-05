@@ -151,7 +151,7 @@
   
     <div class="uk-text-right uk-inline" style="width: 100%;">
       <div class="uk-position-left">
-        <router-link class="uk-button uk-button-default" :to="{ name: 'GioHangDetails' }">Trở lại giỏ hàng</router-link>
+        <router-link class="uk-button uk-button-default" :to="{ name: 'GioHangDetails' }">{{ backToCartBtnText }}</router-link>
       </div>
       <button class="uk-button uk-button-default uk-button-primary" :disabled="errors.any() || !isThongTinDonHangValid || !isTongTienValid" @click="createNewDonHang">Gửi đơn hàng</button>
     </div>
@@ -199,6 +199,9 @@ export default {
     isTongTienValid() {
       let minTongTien = (this.thongTinDonHang.tinhThanh === 'Hồ Chí Minh') ? 145000 : 195000
       return this.donHang.tongCong >= minTongTien
+    },
+    backToCartBtnText() {
+      return this.$store.getters.clientWidth <= 500 ? 'Giỏ hàng' : 'Trờ lại giỏ hàng'
     }
   },
   watch: {
@@ -284,6 +287,8 @@ export default {
     }
   },
   created() {
+    window.scrollTo(0, 0)
+
     this.thongTinDonHang = this.$store.getters.thongTinDonHang
 
     this.$http.jsonp(this.locationsEndpoint).then((response) => {
