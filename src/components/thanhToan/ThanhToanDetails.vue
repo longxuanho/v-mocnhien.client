@@ -246,7 +246,7 @@ export default {
         .then(response => {
           this.$toastr.success('Đơn hàng của bạn đã được tạo mới thành công và đang chờ được chúng tôi xử lý.', 'Tạo mới thành công')
 
-          // reset
+          this.$store.dispatch('resetDonHang')
           if (response.body._id)
             this.$router.push({ name: 'DonHangDetails', params: { id: response.body._id } })
         }, error => {

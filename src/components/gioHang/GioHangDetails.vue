@@ -71,35 +71,6 @@
       <router-link :to="{ name: 'ThanhToanDetails' }" class="uk-button uk-button-default mn-button-effect uk-button-primary" tag="button" :disabled="errors.any()">Thanh toán</router-link>
     </div>
 
-    <div uk-alert id="help-chiet-khau">
-      <h3>Chính sách chiết khấu</h3>
-      <p>Hiện tại, Mộc Nhiên Farm áp dụng chính sách chiết khấu cho các sản phẩm từ nông trại như sau:</p>
-      <ul>
-        <li>
-          <strong>3%</strong> với các đơn hàng từ
-          <strong>42</strong> cây</li>
-        <li>
-          <strong>7%</strong> với các đơn hàng từ
-          <strong>84</strong> cây</li>
-        <li>
-          <strong>12%</strong> với các đơn hàng từ
-          <strong>168</strong> cây</li>
-        <li>
-          <strong>18%</strong> với các đơn hàng từ
-          <strong>336</strong> cây</li>
-        <li>
-          <strong>25%</strong> với các đơn hàng từ
-          <strong>672</strong> cây</li>
-        <li>
-          <strong>33%</strong> với các đơn hàng từ
-          <strong>1,344</strong> cây</li>
-        <li>
-          <strong>42%</strong> với các đơn hàng từ
-          <strong>2,688</strong> cây</li>
-      </ul>
-      <p>Mặc định, chính sách này được áp dụng tự động đối với các đơn đặt hàng của các bạn tại đây!</p>
-    </div>
-  
     <div uk-alert style="margin-top: 2rem;" v-if="itemsCount < 42">
       <p>Mộc Nhiên Farm sẽ tiến hành giao hàng đối với các đơn hàng có giá trị đáp ứng:</p>
       <ul>

@@ -46,6 +46,9 @@ export const store = new Vuex.Store({
           trangThai: 'Chờ xác thực'
         };
     },
+    resetDonHang(state) {
+      localStorage.removeItem('donHang');
+    },
     resetThongTinDonHang(state) {
       let thongTinDonHang = {
         hoTen: '',
@@ -123,6 +126,10 @@ export const store = new Vuex.Store({
   },
   actions: {
     initDonHang(context) {
+      context.commit('initDonHang')
+    },
+    resetDonHang(context) {
+      context.commit('resetDonHang')
       context.commit('initDonHang')
     },
     resetThongTinDonHang(context) {
