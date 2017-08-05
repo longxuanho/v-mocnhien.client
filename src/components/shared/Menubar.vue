@@ -211,6 +211,11 @@
   
       </nav>
     </div>
+  
+    <!-- Scroll up button -->
+    <a class="mn-scroll-up-wrapper" uk-scroll href="#app">
+      <i class="fa fa-chevron-up fa-2x"></i>
+    </a>
   </div>
 </template>
 
@@ -377,6 +382,32 @@ export default {
   &:hover::before {
     right: 15px;
   }
+}
+
+.uk-sticky:not(.uk-sticky-fixed) .mn-scroll-up-wrapper {
+  display: none;
+}
+
+.mn-scroll-up-wrapper {
+  &:hover {
+    opacity: 1
+  }
+
+  color: gray;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  line-height: 3rem;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: .5rem;
+  top: 100px;
+  right: 1rem;
+  z-index: 9999;
+  background-color: white;
+  opacity: .5
 }
 
 // Items Count trong giỏ hàng
