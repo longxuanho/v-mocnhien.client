@@ -7,7 +7,7 @@
           <div class="uk-navbar-item">
             <div class="uk-search uk-search-navbar">
               <span uk-search-icon></span>
-              <input class="uk-search-input" :value="searchText" type="search" placeholder="Tìm sản phẩm..." spellcheck=false @input="search">
+              <input class="uk-search-input" :value="searchText" type="search" :placeholder="searchPlaceholder" spellcheck=false @input="search">
             </div>
           </div>
         </div>
@@ -239,6 +239,9 @@ export default {
   computed: {
     itemsCount() {
       return this.$store.getters.donHang.itemsCount
+    },
+    searchPlaceholder() {
+      return this.clientWidth <= 500 ? "Tìm kiếm..." : "Tìm sản phẩm"
     }
   },
   methods: {
@@ -328,6 +331,12 @@ export default {
   .uk-search-icon:not(.uk-search-icon-flip)+.uk-search-input {
     padding-left: 60px;
   }
+}
+
+.uk-navbar-right {
+  min-width: 7rem;
+  text-align: right;
+  justify-content: flex-end;
 }
 
 .mn-bold {
