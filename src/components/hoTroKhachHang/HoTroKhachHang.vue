@@ -1,0 +1,173 @@
+<template>
+  <div class="uk-container uk-container-expand">
+    <div class="sk-main uk-section uk-section-small">
+  
+      <div class="uk-container uk-container-small uk-position-relative">
+        <div class="uk-padding-small">
+          <div id="huong-dan-mua-hang"></div>
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-text-justify">
+            <h2 class="uk-card-title">Hướng dẫn mua hàng</h2>
+            <p>Sau khi đã lựa chọn được những sản phẩm mình yêu thích, bạn vui lòng liên hệ với chúng tôi theo một trong những cách sau đây:</p>
+            <ul>
+              <li>Hệ thống chat trực tuyến của Mộc Nhiên Farm</li>
+              <li>Facebook Fanpage:
+                <a href="https://www.facebook.com/mocnhienfarm">www.facebook.com/mocnhienfarm</a>
+                <!--<li>Số điện thoại Hotline: (0933)-909.022 | (08)-8235.654</li>-->
+                <li>Số điện thoại Hotline: (0933)-909.022</li>
+            </ul>
+            <p>Sau khi xác nhận đơn đặt hàng và thực hiện thanh toán thành công, chúng tôi sẽ tiến hành giao hàng tới địa chỉ của bạn.</p>
+            <hr/>
+            <p>Ngoài ra, bạn cũng có thể đến và thực hiện giao dịch trực tiếp với chúng tôi tại hệ thống cửa hàng Mộc Nhiên Farm theo địa chỉ:</p>
+            <ul>
+              <li>110 Đường 766, Thôn 4, Đức Hạnh, Đức Linh, Bình Thuận</li>
+            </ul>
+             <p style="text-align: center"><img src="https://c1.staticflickr.com/5/4379/36211564012_8a7da462ff_h.jpg" alt=""/></p> 
+          </div>
+  
+          <div id="huong-dan-thanh-toan"></div>
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-text-justify" style="margin-top: 3rem;">
+            <h2 class="uk-card-title">Hướng dẫn thanh toán</h2>
+            <dl class="uk-description-list uk-description-list-divider">
+              <dd>
+                <p>Khách hàng có thể thanh toán tiền mặt khi nhận hàng hoặc chuyển khoản trước qua ngân hàng cho Mộc Nhiên Farm.</p>
+              </dd>
+              <dt></dt>
+              <dd>
+                <p>Thông tin chuyển khoản:</p>
+                <ul>
+                  <li>Số tài khoản: 007 1000 84 88 55</li>
+                  <li>Chủ tài khoản: Huỳnh Quang Nhất</li>
+                  <li>Ngân hàng: Vietcombank chi nhánh Tp. HCM</li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+  
+          <div id="quy-dinh-giao-hang"></div>
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-text-justify" style="margin-top: 3rem;">
+            <h2 class="uk-card-title">Quy định giao hàng</h2>
+            <dl class="uk-description-list uk-description-list-divider">
+              <dt>Khu vực Tp. HCM:</dt>
+              <dd>
+                <p>Đối với những địa chỉ nhận hàng thuộc địa bàn Tp.HCM, nông trại chỉ giao hàng với đơn hàng thấp nhất là 145k (21 cây). Thời gian giao hàng trong vòng 7 ngày kể từ ngày đặt hàng. Khách hàng nên kiểm tra ngay khi nhận hàng để khiếu nại nếu có vấn đề không hài lòng với dịch vụ của Mộc Nhiên Farm.</p>
+                <p>Phí giao hàng được tính như sau:</p>
+                <ul>
+                  <li>35k đối với khu vực Tp. HCM</li>
+                </ul>
+              </dd>
+              <dt>Khu vực ngoài Tp. HCM:</dt>
+              <dd>
+                <p>Đối với những địa chỉ nhận hàng nằm ngoài Tp.HCM, nông trại chỉ giao hàng với đơn hàng thấp nhất là 290k (42 cây). Thời gian giao hàng trong vòng 7 ngày kể từ ngày đặt hàng.</p>
+                <p>Khách hàng nên kiểm tra ngay khi nhận hàng để khiếu nại nếu có vấn đề không hài lòng với dịch vụ của Mộc Nhiên Farm. Tưới nước cho cây sớm nhất có thể vì đi đường xa cây sẽ bị mất nhiều nước!</p>
+                <p>Phí giao hàng được tính như sau:</p>
+                <ul>
+                  <li>25k đối với khu vực tỉnh Bình Thuận</li>
+                  <li>55k đối với tất cả các tỉnh thành còn lại.</li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+  
+          <div id="cau-hoi-thuong-gap"></div>
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-text-justify" style="margin-top: 3rem;">
+            <h2 class="uk-card-title">Câu hỏi thường gặp</h2>
+            <ul uk-accordion>
+              <li class="uk-open">
+                <h3 class="uk-accordion-title">1. Mình mua cây ở tiệm về chăm rất hay chết, vậy cây của Mộc Nhiên Farm có dễ chăm không?</h3>
+                <div class="uk-accordion-content">
+                  <p>Cả cây cối và động vật thường hay chết vì những lý do sau: Già, tai nạn, khát, nghẹt thở (úng nước), bệnh tật. Trừ cái chết già và chết do tai nạn thì Mộc Nhiên Farm chưa có cách điều trị :D, còn lại chúng ta chỉ nên quan tâm đến vấn đề chết do khát, do úng nước và bệnh tật.</p>
+                  <ul>
+                    <li>Để giải quyết vấn đề chết khát thì kết cấu đất nên có thành phần giữ nước tốt như xơ dừa, chất hoai mục… và chúng ta nhớ tưới nước khi thấy đất sắp khô.</li>
+                    <li>Để giải quyết vấn chết ngạt thì phải làm kết cấu đất tơi xốp thoáng khí bằng cách trộn thêm xơ dừa, trấu hun, tro trấu, chất hoai mục, vỏ đậu phụng… và tưới nước vừa phải (khi nào thấy đất sắp khô hãy tưới, đa phần rễ cây thích đất ẩm ẩm thoáng khí). Đừng tưới quá nhiều cây không uống hết được mà con chết ngạt, đất lúc nào cũng đầy nước, cầm lên bóp thấy bẹt nhẹt, nước chảy rột rột thì cây toi sớm). Nếu đất bị đọng nước thì đào mương thoát nước, nếu chậu đặt trên sàn bị bít lỗ thoát nước thì kể chậu lên mấy viên gạch. Túm lại là phải để cho rễ thở (rễ vẫn lấy oxi trong đất được khuếch tán từ không khí, đất nghẹt nước thiếu oxi thì rễ chết dẫn đến cây chết).</li>
+                    <li>Để giải quyết vấn đề bệnh tật thì khi thấy cây có dấu hiện khác lạ, nên chụp ảnh lại và đem ra tiệm thuốc bảo vệ thực vật để được tư vấn mua thuốc về cho cây uống (cây mua ở tiệm cảnh hay bị nhiễm bệnh nên dễ chết, một lý do nữa là họ trồng trong tro mà tro thì nhanh khô nước nên cây dễ chết khát).</li>
+                  </ul>
+                  <p>Nhưng chúng ta phải cực kì lưu ý đến đều này, cây bị côn trùng phá hoại, bị rầy, bị sâu thì trị rất dễ và cây ít chết, nhưng khi cây đã nhiễm nấm bệnh, tuyến trùng, vi khuẩn thì chữa hơi mệt. Nhiễm virut thì nên chuẩn bị hòm sẵn cho nó vì bác sĩ bó tay. Và nguyên nhân chính dẫn tới nấm bệnh, vi khuẩn, virut thường là do môi trường ẩm thấp, đất bị nghẹt úng do kém thoát nước hay tưới quá nhiều (nhớ là tưới nhiều ko phải là tốt đâu nhé), hoặc cây hoặc đất mang nhiều mầm bệnh.</p>
+                  <p>Vì vậy mà chúng ta phải có một kết cấu đất thoáng xốp, tưới vừa phải, không sử dụng đất hay cây giống bị nhiễm bệnh. Còn lại nếu cây thiếu dinh dưỡng thì chỉ èo ọt chứ không chết ngay.</p>
+                  <dl class="uk-description-list uk-description-list-divider">
+                    <dt>Kết luận</dt>
+                    <dd>Cây của Mộc Nhiên Farm khỏe mạnh và sạch mầm bệnh nên dễ chăm lắm, và nếu bạn hiểu được những điều mình nhắn nhủ ở trên nữa thì ko lo cây chết nhé!</dd>
+                  </dl>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+  
+        <div id="table-content" class="sk-sidebar-right uk-visible@l" uk-sticky="offset: 180">
+          <div class="uk-active" style="position: fixed; top: 180px; width: 200px; padding-left: 1rem;">
+            <ul class="uk-nav uk-nav-default sk-nav uk-nav-parent-icon">
+              <li>HỖ TRỢ KHÁCH HÀNG</li>
+              <li class="uk-nav-divider"></li>
+              <li>
+                <a href="#huong-dan-mua-hang" uk-scroll>Hướng dẫn mua hàng</a>
+              </li>
+              <li>
+                <a href="#huong-dan-thanh-toan" uk-scroll>Hướng dẫn thanh toán</a>
+              </li>
+              <li>
+                <a href="#quy-dinh-giao-hang" uk-scroll>Quy định giao hàng</a>
+              </li>
+              <li>
+                <a href="#cau-hoi-thuong-gap" uk-scroll>Câu hỏi thường gặp</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.sk-sidebar-right {
+  left: calc(100% + 0px);
+  position: absolute;
+  width: 200px;
+}
+
+.sk-nav>li.uk-active>a::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -25px;
+  width: 15px;
+  border-top: 1px solid #8DC15B;
+}
+
+.uk-card {
+  h2 {
+    color: #8DC15B !important;
+  }
+  a {
+    color: #8DC15B !important;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: auto;
+      left: 0;
+      bottom: 1px;
+      width: 100%;
+      height: 1px;
+      content: '';
+      background-color: #8DC15B;
+      transition: all .4s;
+      backface-visibility: hidden;
+      transform: scaleX(0);
+    }
+    &:hover::before {
+      background-color: #8DC15B;
+      transform: scaleX(1);
+      transition: all .4s;
+    }
+  }
+  .uk-description-list {
+    dt {
+      font-weight: 500;
+    }
+  }
+}
+</style>
+

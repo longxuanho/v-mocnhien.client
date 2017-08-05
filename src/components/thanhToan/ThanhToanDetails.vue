@@ -192,7 +192,7 @@ export default {
       return this.thongTinDonHang && this.thongTinDonHang.hoTen && this.thongTinDonHang.dienThoai && this.thongTinDonHang.diaChi && this.thongTinDonHang.tinhThanh && this.thongTinDonHang.quanHuyen
     },
     isTongTienValid() {
-      let minTongTien = (this.thongTinDonHang.tinhThanh === 'Hồ Chí Minh') ? 145000 : 290000
+      let minTongTien = (this.thongTinDonHang.tinhThanh === 'Hồ Chí Minh') ? 145000 : 195000
       return this.donHang.tongCong >= minTongTien
     }
   },
