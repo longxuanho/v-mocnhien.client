@@ -228,7 +228,6 @@ export default {
       searchText: '',
       apiEndpoint: process.env.API_MENU,
       menu: this.initMenu(),
-      clientWidth: this.resolveClientWidth()
     }
   },
   watch: {
@@ -237,6 +236,9 @@ export default {
     }
   },
   computed: {
+    clientWidth() {
+      return this.$store.getters.clientWidth
+    },
     itemsCount() {
       return this.$store.getters.donHang.itemsCount
     },
@@ -288,17 +290,16 @@ export default {
     },
 
     resolveClientWidth() {
-      return window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
+      this.$store.dispatch('resolveClientWidth')
     }
   },
 
   created() {
+    this.resolveClientWidth();
     this.searchText = this.$route.query['s'] || '';
 
     window.onresize = _.debounce((event) => {
-      this.clientWidth = this.resolveClientWidth();
+      this.resolveClientWidth();
     }, 1000);
 
     this.$http.get(this.apiEndpoint)

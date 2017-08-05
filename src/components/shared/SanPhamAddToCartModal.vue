@@ -1,5 +1,5 @@
 <template>
-  <div id="modal-add-to-cart" uk-modal="center: true">
+  <div id="modal-add-to-cart" :class="{ 'uk-modal-full': clientWidth <= 545 }" uk-modal="center: true">
     <form class="uk-modal-dialog">
       <button class="uk-modal-close-default" type="button" uk-close></button>
   
@@ -18,7 +18,7 @@
   
                 <label class="uk-form-label" for="soLuong">Số lượng:</label>
                 <div class="uk-form-controls">
-                  <input type="number" name="soLuong" autofocus v-model.number="soLuong" class="uk-input" style="max-width: 6rem;" v-validate="{ rules: { required: true, numeric: true, min_value: 1, max_value: sanPham.soLuong } }" autofocus :class="{'uk-form-danger': errors.has('soLuong')}">
+                  <input type="number" name="soLuong" v-model.number="soLuong" class="uk-input" style="max-width: 6rem;" v-validate="{ rules: { required: true, numeric: true, min_value: 1, max_value: sanPham.soLuong } }" :class="{'uk-form-danger': errors.has('soLuong')}">
                 </div>
                 <p class="text-right" style="margin-bottom: 0">Hiện đang sẵn có {{ sanPham.soLuong | number }} cây.</p>
               </div>
@@ -46,6 +46,11 @@ export default {
   data() {
     return {
       soLuong: 1
+    }
+  },
+  computed: {
+    clientWidth() {
+      return this.$store.getters.clientWidth
     }
   },
   props: ['sanPham'],
@@ -83,5 +88,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.uk-modal-full {
+  .uk-modal-dialog {
+    height: 100%;
+  }
+}
 </style>
 

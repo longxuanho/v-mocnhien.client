@@ -6,9 +6,17 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    donHang: null
+    donHang: null,
+    clientWidth: 0,
+    lastScrollPos: { x: 0, y: 0 }
   },
   getters: {
+    clientWidth: state => {
+      return state.clientWidth
+    },
+    lastScrollPos: state => {
+      return state.lastScrollPos
+    },
     donHang: state => {
       return state.donHang;
     },
@@ -22,6 +30,15 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
+    resolveClientWidth(state) {
+      state.clientWidth = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+    },
+    resolveLastScrollPos(state) {
+      state.lastScrollPos.x = window.scrollX
+      state.lastScrollPos.y = window.scrollY
+    },
     initDonHang(state) {
       state.donHang = JSON.parse(localStorage.getItem('donHang'))
         || {
@@ -125,6 +142,12 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
+    resolveClientWidth(context) {
+      context.commit('resolveClientWidth')
+    },
+    resolveLastScrollPos(context) {
+      context.commit('resolveLastScrollPos')
+    },
     initDonHang(context) {
       context.commit('initDonHang')
     },

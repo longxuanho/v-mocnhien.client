@@ -35,9 +35,17 @@ export default {
     EventBus.$on('SHOW_ADD_TO_CART_MODAL', (payLoad) => {
       this.selectedSanPham = payLoad || null;
       this.$UIkit.modal("#modal-add-to-cart").show();
+
+      // FIX BUG: Lỗi trên iOS 6 sau khi đóng hộp thoại thêm sản phẩm vào giỏ thì quay về đầu trang.
+      this.$store.dispatch('resolveLastScrollPos')
     });
     EventBus.$on('HIDE_ADD_TO_CART_MODAL', (payLoad) => {
       this.selectedSanPham = null;
+
+      // FIX BUG: Lỗi trên iOS 6 sau khi đóng hộp thoại thêm sản phẩm vào giỏ thì quay về đầu trang.
+      let scrollY = window.scrollY;
+      if (scrollY !== this.$store.getters.lastScrollPos.y)
+        window.scrollTo(this.$store.getters.lastScrollPos.x, this.$store.getters.lastScrollPos.y)
     });
   },
   created() {
