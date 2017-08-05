@@ -14,7 +14,7 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <li class="uk-visible@s">
-                <a href="">HỖ TRỢ</a>
+                <router-link :to="{ name: 'HoTroKhachHang' }">HỖ TRỢ</router-link>
               </li>
               <li class="uk-visible@m">
                 <a href="#">LIÊN HỆ</a>
@@ -60,7 +60,7 @@
                 </div>
               </li>
               <li class="uk-visible@s">
-                <a href="">ĐƠN HÀNG</a>
+                <router-link :to="{ name: 'DonHangList' }">ĐƠN HÀNG</router-link>
               </li>
               <li class="uk-hidden@s">
                 <a href="" uk-icon="icon: album"></a>
