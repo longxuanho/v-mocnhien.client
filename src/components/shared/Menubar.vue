@@ -302,7 +302,7 @@ export default {
       this.resolveClientWidth();
     }, 1000);
 
-    this.$http.get(this.apiEndpoint)
+    this.$http.jsonp(this.apiEndpoint)
       .then(response => {
         this.menu = this.resolveMenu(response.body.menu);
       }, error => {

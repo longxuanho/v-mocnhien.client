@@ -286,13 +286,13 @@ export default {
   created() {
     this.thongTinDonHang = this.$store.getters.thongTinDonHang
 
-    this.$http.get(this.locationsEndpoint).then((response) => {
+    this.$http.jsonp(this.locationsEndpoint).then((response) => {
       this.phiVanChuyenRefs = response.body.locations
 
       this.resolveLocationOptions(response.body.locations)
     }, (errors) => {
       console.log(errors)
-    })
+    });
   }
 }
 </script>
