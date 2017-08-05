@@ -131,8 +131,12 @@
   
     <div uk-alert class="uk-alert-danger" v-if="errors.any() || !isThongTinDonHangValid">
       <h3>Chưa đủ thông tin thanh toán</h3>
-      <p><em>Xin vui lòng hoàn thiện đầy đủ các thông tin về người nhận trước khi bạn gửi đơn hàng này.</em></p>
-      <p><em>Lưu ý rằng các trường thông tin có dấu (*) là các phần bắt buộc.</em></p>
+      <p>
+        <em>Xin vui lòng hoàn thiện đầy đủ các thông tin về người nhận trước khi bạn gửi đơn hàng này.</em>
+      </p>
+      <p>
+        <em>Lưu ý rằng các trường thông tin có dấu (*) là các phần bắt buộc.</em>
+      </p>
     </div>
   
     <div uk-alert class="uk-alert-danger" style="margin-top: 2rem;" v-if="!isTongTienValid">
@@ -162,7 +166,8 @@ export default {
   data() {
     return {
       thongTinDonHang: null,
-      apiEndPoint: process.env.API_LOCATIONS,
+      locationsEndpoint: process.env.API_LOCATIONS,
+      apiEndpoint: process.env.API_ENDPOINT + '/don_hangs',
       locationOptions: {
         tinhThanhs: [],
         quanHuyens: {}
@@ -234,6 +239,19 @@ export default {
       this.thongTinDonHang = this.$store.getters.thongTinDonHang
     },
     createNewDonHang() {
+      if (!this.donHang) return
+      let preparedDonHang = Object.assign({}, this.donHang);
+
+      this.$http.post(this.apiEndpoint, preparedDonHang)
+        .then(response => {
+          this.$toastr.success('Đơn hàng của bạn đã được tạo mới thành công và đang chờ được chúng tôi xử lý.', 'Tạo mới thành công')
+
+          // reset
+          if (response.body._id)
+            this.$router.push({ name: 'DonHangDetails', params: { id: response.body._id } })
+        }, error => {
+          this.$toastr.error(`Có lỗi khi khởi tạo đơn hàng này. ${error.message}`, 'Tạo đơn hàng thất bại')
+        })
 
     },
     logVueObject(object) {
@@ -268,7 +286,7 @@ export default {
   created() {
     this.thongTinDonHang = this.$store.getters.thongTinDonHang
 
-    this.$http.get(this.apiEndPoint).then((response) => {
+    this.$http.get(this.locationsEndpoint).then((response) => {
       this.phiVanChuyenRefs = response.body.locations
 
       this.resolveLocationOptions(response.body.locations)
