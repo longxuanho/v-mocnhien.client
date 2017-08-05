@@ -75,7 +75,7 @@
       <p>Mộc Nhiên Farm sẽ tiến hành giao hàng đối với các đơn hàng có giá trị đáp ứng:</p>
       <ul>
         <li>Ít nhất 145k (21 cây) đối với các đơn hàng trong khu vực Tp. HCM</li>
-        <li>Ít nhất 290k (42 cây) đối với các đơn hàng giao đi các tỉnh thành khác</li>
+        <li>Ít nhất 195k (28 cây) đối với các đơn hàng giao đi các tỉnh thành khác</li>
       </ul>
     </div>
   </div>
