@@ -1,0 +1,188 @@
+<template>
+  <div class="uk-container" style="margin-bottom: 3rem;" v-if="donHang">
+    <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
+      <li>
+        <router-link href="" :to="{ name: 'Home' }">Trang chính</router-link>
+      </li>
+      <li>
+        <router-link href="" :to="{ name: 'DonHangList' }">Đơn hàng</router-link>
+      </li>
+      <li>
+        <span href="">{{ donHang.maDonHang }}</span>
+      </li>
+    </ul>
+    <div>
+      <!-- <sk-trang-thai-don-hang [trangThai]="donHang.trangThai"></sk-trang-thai-don-hang> -->
+  
+      <div uk-alert v-if="donHang.trangThai === 'Chờ xác thực'">
+        <h3>Trong quá trình đơn hàng đang chờ xác nhận...</h3>
+        <em>Nếu có thể, các bạn hãy chủ động liên hệ với Mộc Nhiên Farm qua hệ thống chat online của cửa hàng hoặc Chúng tôi sẽ liên hệ với bạn qua số điện thoại hoặc địa chỉ email mà bạn đã đăng ký.</em>
+      </div>
+  
+      <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin đăng ký</h3>
+      <form class="uk-form-horizontal uk-margin" spellcheck="false">
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Mã đơn hàng</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Mã đơn hàng" :value="donHang.maDonHang">
+          </div>
+        </div>
+  
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Thanh toán</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Địa chỉ" :value="cachThanhToan">
+            <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Trạng thái" :value="trangThai">
+          </div>
+        </div>
+  
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Thông tin nhận hàng</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Địa chỉ" :value="diaChiNhanHang">
+            <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Số điện thoại" :value="donHang.dienThoaiNguoiNhan">
+          </div>
+        </div>
+  
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Ngày giao</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Ngày giao / Dự kiến giao" :value="ngayGiao">
+          </div>
+        </div>
+  
+        <div uk-alert v-if="this.donHang.cachThanhToan === 'Chuyển khoản'">
+          <h3>Thông tin chuyển khoản</h3>
+          <ul>
+            <li>Số tài khoản:
+              <strong>007 1000 84 88 55</strong>
+            </li>
+            <li>Chủ tài khoản:
+              <strong>Huỳnh Quang Nhất</strong>
+            </li>
+            <li>Ngân hàng: Vietcombank chi nhánh Tp. HCM</li>
+          </ul>
+          <em>Đối với các đơn hàng nằm ngoài khu vực Tp. HCM, chúng tôi chỉ chấp nhận hình thức thanh toán chuyển khoản qua ngân hàng hoặc giao dịch trực tiếp tại nông trại.</em>
+          <em>Để biết thêm chi tiết, xin vui lòng xem Hướng dẫn thanh toán
+            <a href="/ho-tro-khach-hang#huong-dan-thanh-toan">tại đây</a>
+          </em>
+        </div>
+  
+      </form>
+    </div>
+    <div v-if="donHang.sanPhams">
+      <hr style="margin-top: 2rem;" />
+      <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Nội dung đơn hàng</h3>
+      <table class="uk-table uk-table-divider uk-table-justify">
+        <thead>
+          <tr>
+            <th>Mã sản phẩm</th>
+            <th class="uk-table-expand">Tên sản phẩm</th>
+            <th class="uk-text-right">Số lượng</th>
+            <th class="uk-text-right">Đơn giá</th>
+            <th class="uk-text-right">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in donHang.sanPhams" :key="item._id">
+            <td>{{ item.ma }}</td>
+            <td>{{ item.ten }}</td>
+            <td class="uk-text-right">{{ item.soLuong | number }}</td>
+            <td class="uk-text-right">{{ item.donGia | number }}</td>
+            <td class="uk-text-right">{{ item.thanhTien | number }}</td>
+          </tr>
+          <tr v-if="!donHang.sanPhams.length">
+            <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
+          </tr>
+          <tr v-if="donHang.sanPhams.length">
+            <th colspan="2" style="color: inherit;">Tổng số lượng:
+              <strong style="display: inline-block; margin-left: .875rem;">{{ donHang.itemsCount | number }} cây</strong>
+            </th>
+            <th colspan="3" style="color: inherit;" class="uk-text-right">
+              <span>Tổng cộng:
+                <span class="sk-numeral">{{ donHang.tongCong | number }} đ</span>
+              </span>
+              <br/>
+              <span>Chiết khấu ({{ donHang.chietKhauPercent }} %):
+                <span class="sk-numeral">{{ chietKhau | number }} đ</span>
+              </span>
+              <br/>
+              <span>Phí vận chuyển:
+                <span class="sk-numeral">{{ donHang.phiVanChuyen | number }} đ</span>
+              </span>
+              <br/>
+              <strong>Tổng thanh toán:
+                <span class="sk-numeral">{{ donHang.tongThanhToan | number }} đ</span>
+              </strong>
+              <br/>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+</template>
+
+<script>
+import moment from 'moment';
+import numberFilter from '../../services/numberFilter';
+
+export default {
+  data() {
+    return {
+      donHang: null,
+      selectedId: null
+    }
+  },
+  computed: {
+    apiEndPoint() {
+      return process.env.API_ENDPOINT + `/don_hangs/${this.selectedId}`
+    },
+    cachThanhToan() {
+      if (!this.donHang) return ''
+      return (this.donHang.cachThanhToan === 'Tiền mặt') ? 'Thanh toán tiền mặt khi nhận hàng.' : 'Chuyển khoản qua ngân hàng.'
+    },
+    trangThai() {
+      if (!this.donHang) return ''
+      if (!this.donHang.daThanhToan) return 'Đơn hàng chưa thanh toán.'
+
+      return `Đã thanh toán ${this.donHang.daThanhToan} đ.`
+    },
+    chietKhau() {
+      return - Math.ceil((this.donHang.chietKhauPercent / 100 * this.donHang.tongCong) / 1000) * 1000;
+    },
+    diaChiNhanHang() {
+      return this.donHang ? `${this.donHang.diaChi}, ${this.donHang.quanHuyen}, ${this.donHang.tinhThanh}.` : ''
+    },
+    ngayGiao() {
+      if (!this.donHang) return '';
+      if (!this.donHang.ngayDuKienGiao) return `Chưa dự kiến ngày giao.`;
+      if (!this.donHang.ngayGiao) return `Dự kiến giao hàng ngày ${moment(this.donHang.ngayDuKienGiao).format('DD/MM/YYYY')}.`;
+
+      return `Đã giao hàng ngày ${moment(this.donHang.ngayGiao).format('DD/MM/YYYY')}.`;
+    }
+  },
+  filters: {
+    number: numberFilter
+  },
+  methods: {
+    resolveDonHang() {
+      this.$http.get(this.apiEndPoint, { params: { fields: '' } })
+        .then(response => {
+          this.donHang = response.body;
+        }, error => {
+          console.log(error);
+        })
+    }
+  },
+  created() {
+    window.scrollTo(0, 0);
+    this.selectedId = this.$route.params['id'];
+
+    if (this.selectedId)
+      this.resolveDonHang();
+  }
+}
+</script>
+

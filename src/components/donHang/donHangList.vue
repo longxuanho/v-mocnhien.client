@@ -25,8 +25,8 @@
         </tr>
       </thead>
       <tbody>
-        <router-link tag="tr" :to="{name: 'Home'}" v-for="donHang in donHangs" class="mn-cursor-hover" :key="donHang._id">
-          <td>{{ donHang.created }}</td>
+        <router-link tag="tr" :to="{name: 'DonHangDetails', params: { id: donHang._id }}" v-for="donHang in donHangs" class="mn-cursor-hover" :key="donHang._id">
+          <td>{{ donHang.created | moment('DD/MM/YYYY')}}</td>
           <td>{{ donHang.maDonHang }}</td>
           <td>{{ donHang.trangThai }}</td>
           <td class="uk-text-right">{{ donHang.itemsCount }}</td>
@@ -47,6 +47,7 @@
 
 <script>
 import numberFilter from '../../services/numberFilter';
+import momentFilter from '../../services/momentFilter';
 
 export default {
   data() {
@@ -66,7 +67,8 @@ export default {
     }
   },
   filters: {
-    number: numberFilter
+    number: numberFilter,
+    moment: momentFilter
   },
   created() {
     if (this.$route.query['dh']) {
@@ -88,7 +90,7 @@ export default {
           this.donHangs = response.body || [];
         }, error => {
           this.isLoading = false;
-          this.sanPhams = [];
+          this.donHangs = [];
           console.log(error);
         });
     }

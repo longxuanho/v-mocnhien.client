@@ -8,6 +8,7 @@ import GiohangDetails from '@/components/gioHang/GioHangDetails'
 import ThanhToanDetails from '@/components/thanhToan/ThanhToanDetails'
 import HoTroKhachHang from '@/components/hoTroKhachHang/HoTroKhachHang'
 import DonHangList from '@/components/donHang/DonHangList'
+import DonHangDetails from '@/components/donHang/DonHangDetails'
 
 
 Vue.use(Router)
@@ -43,6 +44,10 @@ export default new Router({
       path: '/don-hang',
       name: 'DonHangList',
       component: DonHangList
+    }, {
+      path: '/don-hang/:id',
+      name: 'DonHangDetails',
+      component: DonHangDetails
     }
   ]
 })
