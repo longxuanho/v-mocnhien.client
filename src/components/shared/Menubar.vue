@@ -307,8 +307,6 @@ export default {
     this.searchText = this.$route.query['s'] || '';
 
     window.onresize = _.debounce((event) => {
-      // FIX BUG: Reactive menubar
-      console.log('resizing...')
       this.resolveClientWidth();
     }, 1000);
 

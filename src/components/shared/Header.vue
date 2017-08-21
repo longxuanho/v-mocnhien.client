@@ -38,12 +38,6 @@
                       <a>
                         <i class="fa fa-map-marker" aria-hidden="true"></i> 110 Đường 3/2 Thôn Tư, Đức Hạnh, Đức Linh, Bình Thuận</a>
                     </li>
-                    <li>
-                      <strong>Trạm trung chuyển 1</strong>
-                      <br/>
-                      <a>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> 751 Hồng Bàng, Phường 6, Quận 6, Tp. HCM</a>
-                    </li>
   
                     <li class="uk-nav-divider mn-horizontal-separator"></li>
                     <strong>Giờ làm việc</strong>

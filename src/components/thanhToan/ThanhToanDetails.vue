@@ -66,10 +66,6 @@
               </li>
               <li>Ngân hàng: Vietcombank chi nhánh Tp. HCM</li>
             </ul>
-            <em>Đối với các đơn hàng nằm ngoài khu vực Tp. HCM, chúng tôi chỉ chấp nhận hình thức thanh toán chuyển khoản qua ngân hàng hoặc giao dịch trực tiếp tại nông trại.</em>
-            <em>Để biết thêm chi tiết, xin vui lòng xem Hướng dẫn thanh toán
-              <router-link to="/ho-tro-khach-hang#huong-dan-thanh-toan">tại đây</router-link>
-            </em>
           </div>
         </div>
         <div class="uk-margin">
