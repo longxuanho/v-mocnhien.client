@@ -22,14 +22,13 @@
         <div class="uk-position-relative uk-light" style="z-index: 999;">
   
           <div class="uk-position-bottom-center uk-position-medium" style="width: 100%">
-            <div style="width: 100%; text-align: right;" class="uk-inline">
-              <div style="padding-left: 1rem;" class="uk-position-center-left">
+            <div style="width: 100%; text-align: center;" class="uk-inline">
+              <div style="padding-left: 1rem;">
                 <span style="color: white;">{{ currentCoverNumber }} / {{ currentCoverCount }}</span>
               </div>
-              <div style="padding-right: 1rem">
-                <!-- Click to show Gallery Modal -->
+              <!-- <div style="padding-right: 1rem">
                 <a class="uk-icon-button" uk-icon="icon: thumbnails" @click="showGalleryModal"></a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
