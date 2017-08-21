@@ -13,7 +13,7 @@
   
       <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle" oncontextmenu="return false;">
   
-        <img :src="currentCoverUrl" alt="" uk-cover>
+        <img :src="currentCoverUrl" alt="" uk-cover @click="showGalleryModal" class="mn-cursor-hover">
         <!-- Click here to next or prev -->
         <i class="fa fa-angle-left uk-position-center-left fa-4x uk-position-small uk-hidden-hover uk-slidenav-large" @click="prevCoverShowModal"></i>
         <i class="fa fa-angle-right uk-position-center-right fa-4x uk-position-small uk-hidden-hover uk-slidenav-large" @click="nextCoverShowModal"></i>
@@ -110,7 +110,7 @@
         <div oncontextmenu="return false;">
           <div class="uk-position-relative uk-light">
             <div>
-              <img :src="currentCoverUrl" alt="">
+              <img :src="currentCoverUrl" alt="" >
               <i class="fa fa-angle-left uk-position-center-left fa-4x uk-position-small uk-hidden-hover uk-slidenav-large" @click="prevCover"></i>
               <i class="fa fa-angle-right uk-position-center-right fa-4x uk-position-small uk-hidden-hover uk-slidenav-large" @click="nextCover"></i>
             </div>
@@ -118,9 +118,9 @@
             <div class="mn-dotnav-container">
               <div>
                 <!-- Click here to next or prev -->
-                <span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left"></span>
+                <!-- <span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left"></span> -->
                 <span class="d-inline-block">{{ currentCoverNumber }} / {{ currentCoverCount }}</span>
-                <span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right"></span>
+                <!-- <span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right"></span> -->
               </div>
             </div>
           </div>

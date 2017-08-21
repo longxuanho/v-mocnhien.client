@@ -9,7 +9,7 @@
         <h1 class="home-main-title body-main-title font-sans-light">Ươm mầm giá trị thiên nhiên.</h1>
         <h4 class="home-main-subtitle body-main-subtitle font-sans-regular" style="max-width: 520px;">Mộc Nhiên Farm cung cấp các loại giống cây trồng đa dạng được sưu tầm từ khắp nơi và vận chuyển trên toàn quốc.</h4>
         <h4 class="home-main-subtitle body-main-subtitle font-sans-regular" style="font-size: 15px;">
-          <i>－ Hơn 130+ loại cây giống. Đồng giá chỉ 7,000 đ.</i>
+          <i>－ Hơn 130+ loại cây giống. Chỉ từ 7,000 đ/cây.</i>
         </h4>
       </div>
       <div class="home-main-illustration">
